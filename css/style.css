@@ -1,5 +1,6 @@
 
 .table {
+    position: fixed;
     height:600px;
     width:400px;
     border-color: black;
@@ -37,6 +38,45 @@
 }
 .ben {
     height: 40px fit-content;
+    width: 120px fit-content;
+    border: 2px solid darkgreen;
+    background-color: lightgreen;
+    text-decoration: darkred;
+    font-family: fantasy;
+    font: 30px bold;
+
+}
+
+.heat {
+    height: 40px fit-content;
+    width: 120px;
+    border: 2px solid darkgreen;
+    background-color: lightgreen;
+    text-decoration: darkred;
+    font-family: fantasy;
+    font: 30px bold;
+}
+.their_heat {
+    height: 40px fit-content;
+    width: 120px;
+    border: 2px solid darkgreen;
+    background-color: lightgreen;
+    text-decoration: darkred;
+    font-family: fantasy;
+    font: 30px bold;
+}
+
+.fire {
+    height: 40px fit-content;
+    width: 120px;
+    border: 2px solid darkgreen;
+    background-color: lightgreen;
+    text-decoration: darkred;
+    font-family: fantasy;
+    font: 30px bold;
+}
+.their_fire {
+    height: 40px fit-content;
     width: 120px;
     border: 2px solid darkgreen;
     background-color: lightgreen;
@@ -47,7 +87,7 @@
 
 .their_ben {
     height: 40px fit-content;
-    width: 120px;
+    width: 120px fit-content;
     border: 2px solid darkgreen;
     background-color: lightgreen;
     text-decoration: blueviolet;
@@ -74,113 +114,113 @@ nav {
 }
 #cup9 {
     position: absolute;
-    top: 480px;
+    top: 410px;
     left: 200px;
 }
 #cup8 {
     position: absolute;
-    top: 480px;
+    top: 410px;
     left: 140px;
 }
 
 #cup7 {
     position: absolute;
-    top: 540px;
+    top: 470px;
     left: 230px;
 }
 #cup6 {
     position: absolute;
-    top: 540px;
+    top: 470px;
     left: 170px;
 }
 
 #cup5 {
     position: absolute;
-    top: 540px;
+    top: 470px;
     left: 110px;
 }
 #cup4 {
     position: absolute;
-    top: 600px;
+    top: 530px;
     left: 260px;
 }
 
 #cup3 {
     position: absolute;
-    top: 600px;
+    top: 530px;
     left: 200px;
 }
 
 
 #cup2 {
     position: absolute;
-    top: 600px;
+    top: 530px;
     left: 140px;
 }
 
 
 #cup1 {
     position: absolute;
-    top: 600px;
+    top: 530px;
     left: 80px;
 }
 
 
 #cup0 {
     position: absolute;
-    top: 420px;
+    top: 350px;
     left: 170px;
 }
 
 
 #cup29 {
     position: absolute;
-    bottom: 500px;
+    bottom: 520px;
     left: 80px;
 }
 #cup28 {
     position: absolute;
-    bottom: 500px;
+    bottom: 520px;
     left: 140px;
 }
 #cup27 {
     position: absolute;
-    bottom: 500px;
+    bottom: 520px;
     left: 200px;
 }
 #cup26 {
     position: absolute;
-    bottom: 500px;
+    bottom: 520px;
     left: 260px;
 }
 #cup25 {
     position: absolute;
-    bottom: 440px;
+    bottom: 460px;
     left: 110px;
 }
 #cup24 {
     position: absolute;
-    bottom: 440px;
+    bottom: 460px;
     left: 170px;
 }
 #cup23 {
     position: absolute;
-    bottom: 440px;
+    bottom: 460px;
     left: 230px;
 }
 #cup22 {
     position: absolute;
-    bottom: 380px;
+    bottom: 400px;
     left: 140px;
 }
 #cup21 {
     position: absolute;
-    bottom: 380px;
+    bottom: 400px;
     left: 200px;
 }
 #cup20 {
     position: absolute;
-    bottom: 320px;
+    bottom: 340px;
     left: 170px;
 }
 

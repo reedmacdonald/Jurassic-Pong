@@ -32,7 +32,7 @@ $(document).ready(() => {
       });
     
       $("#start").click(function(){
-        $(".ball").animate({left: "300px"},10000);
+        $(".ball").animate({left: "700px"},4000);
       });
     
       $("#nightMode").click(function(){
@@ -140,7 +140,7 @@ $(document).ready(() => {
     })
     
     $("#go").click(function(){
-      $(".ball").animate({top: "700px"},10000);
+      $(".ball").animate({top: "700px"},4000);
     })
     
     
@@ -154,11 +154,11 @@ $(document).ready(() => {
     })
     
     $("#they_go").click(function(){
-    $(".their_ball").animate({bottom: "700px"},10000);
+    $(".their_ball").animate({bottom: "700px"},4000);
     })
     
     $("#they_start").click(function(){
-      $(".their_ball").animate({left: "10px"},10000);
+      $(".their_ball").animate({left: "10px"},4000);
     });
     
     $('#they_endeth').click(function() {
@@ -179,16 +179,11 @@ $(document).ready(() => {
       let d = parseInt(c,10);
       console.log(`Our top margin d` +d);
       for (i=0;i<10;i++){
-        //console.log($(`#cup${i}`).css('left'))
         let e = $(`#cup2${i}`).css('left')
         let f = parseInt(e,10);
-        //console.log(`cup ${i}s left margin is ${f} and top margin is ${h}`)
-        //console.log( `cup${i}'s left margin^`)
-        //console.log($(`#cup${i}`).css('top'))
         let g = $(`#cup2${i}`).css('top')
         let h = parseInt(g,10);
         console.log(`cup 2${i}s left margin  f is 2${f} and top margin is h 2${h}`)
-        //console.log( `cup${i}'s right margin^`)
         console.log("d>h && d<(h+30) && b>f && b<(f-30)")
         console.log(`Our left margin b` + b);
         console.log(`Our top margin d` +d);
@@ -304,15 +299,7 @@ $(document).ready(() => {
       $('#cup29').hide();
       
     }
-    
-    //for (i=1;i<10;i++){
-    //  console.log($(`#cup${i}`).css('left'))
-    //  console.log( `cup${i}'s left margin^`)
-    //  console.log($(`#cup${i}`).css('top'))
-    //  console.log( `cup${i}'s right margin^`)
-    //}
-    
-    
+        
     $('#endeth').click(function() {
       $('.ball').stop();
       let e;
@@ -331,16 +318,11 @@ $(document).ready(() => {
       let d = parseInt(c,10);
       console.log(`Our top margin d` +d);
       for (i=0;i<10;i++){
-        //console.log($(`#cup${i}`).css('left'))
         let e = $(`#cup${i}`).css('left')
         let f = parseInt(e,10);
-        //console.log(`cup ${i}s left margin is ${f} and top margin is ${h}`)
-        //console.log( `cup${i}'s left margin^`)
-        //console.log($(`#cup${i}`).css('top'))
         let g = $(`#cup${i}`).css('top')
         let h = parseInt(g,10);
         console.log(`cup ${i}s left margin  f is ${f} and top margin is h ${h}`)
-        //console.log( `cup${i}'s right margin^`)
         console.log("d>h && d<(h+30) && b>f && b<(f-30)")
         console.log(`Our left margin b` + b);
         console.log(`Our top margin d` +d);

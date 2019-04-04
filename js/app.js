@@ -1,6 +1,12 @@
 $(document).ready(() => {
     let player = '';
     //player = prompt('type your player');
+
+    const me = {cups_left:10,
+                streak:[]};
+    const them = {cups_left:10,
+                  streak: []};
+    const game = {my_turn: true};
     
     let my_makes=0;
     let their_makes=0;
@@ -187,7 +193,16 @@ $(document).ready(() => {
         console.log(`Our left margin b` + b);
         console.log(`Our top margin d` +d);
         if(d>h && d<(h+30) && b>f && b<(f+30)){
-          $(`#cup2${i}`).hide()
+          $(`#cup2${i}`).hide();
+          them.cups_left--;
+          game.my_turn=true;
+          them.streak.push('hit');
+          checkButtons();
+        }
+        else {
+          game.my_turn=true;
+          them.streak.push('miss');
+          checkButtons();
         }
         $('.their_ball').css('left','350px');
         $('.their_ball').css('bottom','10px');
@@ -195,7 +210,44 @@ $(document).ready(() => {
     
     })
     
+
+
+    const checkButtons = () => {
+      if (game.my_turn==true){
+        $('.ben').show();
+        $('.ben.reracks').hide();
+        $('.their_ben').hide();
+        if (me.cups_left==5){
+          $('#rerack').show();
+          $('#triangle').hide();
+          $('#stoplight').hide();
+        }
+        if (me.cups_left==3){
+          $('#rerack').hide();
+          $('#triangle').show();
+          $('#stoplight').show();
+        }
+      }
+      else {
+        $('.their_ben').show();
+        $('.their_ben.reracks').hide();
+        $('.ben').hide();
+        if (them.cups_left==5 && game.my_turn == false){
+          $('#they_rerack').show();
+          $('#they_triangle').hide();
+          $('#they_stoplight').hide();
+        }
+        if (them.cups_left==3 && game.my_turn == false){
+          $('#they_rerack').hide();
+          $('#they_triangle').show();
+          $('#they_stoplight').show();
+        }
+      }
+
+
+    }
     
+    checkButtons();
     
     const theyMakeThreeTwo = () => {
       $('.their_cup').show();
@@ -293,7 +345,16 @@ $(document).ready(() => {
         console.log(`Our left margin b` + b);
         console.log(`Our top margin d` +d);
         if(d>h && d<(h+30) && b>f && b<(f+30)){
-          $(`#cup${i}`).hide()
+          $(`#cup${i}`).hide();
+          me.cups_left--;
+          game.my_turn=false;
+          me.streak.push("make");
+          checkButtons();
+        }
+        else {
+          game.my_turn=false;
+          me.streak.push("miss");
+          checkButtons();
         }
         $('.ball').css('left','0');
         $('.ball').css('top','80px');

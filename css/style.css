@@ -1,0 +1,180 @@
+
+.table {
+    height:600px;
+    width:400px;
+    border-color: black;
+    border: 9em;
+    background-color:green;
+}
+.ball{
+    position: absolute;
+}
+.cup {
+    border: 5px solid darkred;
+    height:60px;
+    width:60px;
+    background-image: url("https://thumbs.dreamstime.com/t/background-beer-foam-bubbles-close-up-background-beer-foam-bubbles-111550412.jpg");
+    background-color: #f28E1c;
+    border-radius: 50%;
+}
+
+.ball {
+    height:30px;
+    width:30px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.their_ball {
+    height:30px;
+    width:30px;
+    background-color: white;
+    border-radius: 50%;
+    bottom: 10px;
+    left:350px;
+    position: absolute;
+
+}
+.ben {
+    height: 20px;
+    width: 60px;
+    border: 2px solid darkgreen;
+    background-color: lightgreen;
+}
+
+
+nav {
+    position: absolute;
+    left:500px;
+    top: 100px;
+    text-align: right;
+    height: 100%;
+}
+
+.their_cup {
+    border: 5px solid darkred;
+    height:60px;
+    width:60px;
+    background-image: url("https://thumbs.dreamstime.com/t/background-beer-foam-bubbles-close-up-background-beer-foam-bubbles-111550412.jpg");
+    background-color: #f28E1c;
+    border-radius: 50%;
+}
+#cup9 {
+    position: absolute;
+    top: 480px;
+    left: 200px;
+}
+#cup8 {
+    position: absolute;
+    top: 480px;
+    left: 140px;
+}
+
+#cup7 {
+    position: absolute;
+    top: 540px;
+    left: 230px;
+}
+#cup6 {
+    position: absolute;
+    top: 540px;
+    left: 170px;
+}
+
+#cup5 {
+    position: absolute;
+    top: 540px;
+    left: 110px;
+}
+#cup4 {
+    position: absolute;
+    top: 600px;
+    left: 260px;
+}
+
+#cup3 {
+    position: absolute;
+    top: 600px;
+    left: 200px;
+}
+
+
+#cup2 {
+    position: absolute;
+    top: 600px;
+    left: 140px;
+}
+
+
+#cup1 {
+    position: absolute;
+    top: 600px;
+    left: 80px;
+}
+
+
+#cup0 {
+    position: absolute;
+    top: 420px;
+    left: 170px;
+}
+
+
+#cup29 {
+    position: absolute;
+    bottom: 500px;
+    left: 80px;
+}
+#cup28 {
+    position: absolute;
+    bottom: 500px;
+    left: 140px;
+}
+#cup27 {
+    position: absolute;
+    bottom: 500px;
+    left: 200px;
+}
+#cup26 {
+    position: absolute;
+    bottom: 500px;
+    left: 260px;
+}
+#cup25 {
+    position: absolute;
+    bottom: 440px;
+    left: 110px;
+}
+#cup24 {
+    position: absolute;
+    bottom: 440px;
+    left: 170px;
+}
+#cup23 {
+    position: absolute;
+    bottom: 440px;
+    left: 230px;
+}
+#cup22 {
+    position: absolute;
+    bottom: 380px;
+    left: 140px;
+}
+#cup21 {
+    position: absolute;
+    bottom: 380px;
+    left: 200px;
+}
+#cup20 {
+    position: absolute;
+    bottom: 320px;
+    left: 170px;
+}
+
+
+
+
+
+.cup:hover{
+    background-color: blueviolet;
+}

@@ -161,7 +161,7 @@ $(document).ready(() => {
         me.three_rerack=true;
       })
     
-      $("#start").click(function(){
+      $("#start").mousedown(function(){
         $(".ball").animate({top: '700px', left: "700px"},4000);
       });
     
@@ -186,23 +186,23 @@ $(document).ready(() => {
       })
     
     
-    $("#go").click(function(){
+    $("#start").mouseup(function(){
       $('.ball').stop();
       $(".ball").animate({left: "10px", top: "700px"},4000);
     })
     
     
-    $("#they_go").click(function(){
+    $("#they_start").mouseup(function(){
     $('.their_ball').stop();
     $(".their_ball").animate({bottom: "700px",left:'10px'},4000);
     })
     
-    $("#they_start").click(function(){
+    $("#they_start").mousedown(function(){
       
       $(".their_ball").animate({bottom: "700px",left: "700px"},4000);
     });
     
-    $('#they_endeth').click(function() {
+    $('#they_start').keypress(function() {
       $('.their_ball').stop();
       let e, f, g, h;
       let a = $('.their_ball').css('left');
@@ -235,7 +235,7 @@ $(document).ready(() => {
       checkButtons();
     })
 
-    $('#endeth').click(function() {
+    $('#start').keypress(function() {
       $('.ball').stop();
       let e, f, g, h;    
       let a = $('.ball').css('left');

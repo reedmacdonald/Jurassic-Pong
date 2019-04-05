@@ -11,7 +11,8 @@ h1 {
     width:400px;
     border-color: black;
     border: 9em;
-    background-color:green;
+    background-color:gray;
+    opacity:.5;
 }
 .ball{
     position: absolute;

@@ -217,6 +217,7 @@ $(document).ready(() => {
 
         if(d>h && d<(h+30) && b>f && b<(f+30)){
           //$(`#cup${i}`).css('left','10000px');
+          if($(`#cup2${i}`).css("display")=="none"){them.cups_left++}//delete this if it messes everything
           $(`#cup2${i}`).hide(200);
           console.log('HIT!');
           them.cups_left--;
@@ -249,6 +250,7 @@ $(document).ready(() => {
         let h = parseInt(g,10);
         if(d>h && d<(h+30) && b>f && b<(f+30)){
           //$(`#cup${i}`).css('left','10000px');
+          if($(`#cup${i}`).css("display")=="none"){me.cups_left++}//Delete this if it messes up everything
           $(`#cup${i}`).hide(200);
           console.log('HIT!')
           me.cups_left--;

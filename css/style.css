@@ -98,30 +98,33 @@ h1 {
     font: 30px bold;
     margin-top: 20px;
     margin-right: 400px;
+    opacity: .9;
 
 }
 
 .heat {
     height: 40px fit-content;
     width: 145px;
-    border: 2px solid darkgreen;
+    border: 2px solid darkred;
     background-color: lightgreen;
     text-decoration: darkred;
     font-family: fantasy;
     font: 30px bold;
     margin-top: 20px;
     margin-right: 400px;
+    opacity: .9;
 }
 .their_heat {
     height: 40px fit-content;
     width: 145px;
-    border: 2px solid darkgreen;
+    border: 2px solid darkred;
     background-color: lightgreen;
     text-decoration: darkred;
     font-family: fantasy;
     font: 30px bold;
     margin-top: 20px;
     margin-right: 400px;
+    opacity:.9;
 }
 
 .fire {
@@ -157,6 +160,7 @@ h1 {
     font: 30px bold;
     margin-top: 20px;
     margin-right: 400px;
+    opacity: .9;
 }
 
 

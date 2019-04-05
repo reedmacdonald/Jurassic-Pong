@@ -1,5 +1,5 @@
 body{
-    background-image: url("https://wallpapercave.com/wp/wp3182852.jpg");
+    background-image: url("https://i.pinimg.com/originals/59/03/60/590360c0e4f42455bbd4d35d50a9e6b4.jpg");
 }
 h1 {
     color: aliceblue;
@@ -12,7 +12,7 @@ h1 {
     border-color: black;
     border: 9em;
     background-color:gray;
-    opacity:.5;
+    opacity:.7;
 }
 .ball{
     position: absolute;

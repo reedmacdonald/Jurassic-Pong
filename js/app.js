@@ -4,16 +4,23 @@ $(document).ready(() => {
 
     const me = {cups_left:10,
                 streak:[],
-              heat:false};
+              heat:false,
+            won:false,
+          five_rerack: false,
+        three_rerack: false};
 
     const them = {cups_left:10,
                   streak: [],
-                heat:false};
+                heat:false,
+              won:false,
+            five_rerack: false,
+          three_rerack:false};
 
     const game = {my_turn: true};
     
       const makeThreeTwo = () => {
         $('.cup').show();
+ 
         $('#cup6').hide();
         $('#cup5').hide();
         $('#cup1').css('left','140px');
@@ -24,42 +31,50 @@ $(document).ready(() => {
         $('#cup7').css('left','140px')
         $('#cup4').css('left','200px')
         $('#cup4').css('top','440px')
+
         $('#cup0').hide()
         $('#cup8').css('top','500px')
         $('#cup8').css('left','200px')
+
         $('#cup2').hide();
         $('#cup9').hide();
         
       }
       const makeTriangle = () => {
         $('.cup').show();
+
         $('#cup6').hide();
         $('#cup5').hide();
         $('#cup1').css('left','140px');
         $('#cup1').css('top','530px');
         $('#cup3').css('top','470px');
         $('#cup3').css('left','140px');
+
         $('#cup7').hide();
         $('#cup7').hide();
         $('#cup4').hide();
-        $('#cup0').hide()
-        $('#cup8').css('top','500px')
-        $('#cup8').css('left','200px')
+        $('#cup0').hide();
+        $('#cup8').css('top','500px');
+        $('#cup8').css('left','200px');
+
         $('#cup2').hide();
         $('#cup9').hide();    
       }
     
       const makeStoplight = () => {
         $('.cup').show();
+
         $('#cup6').hide();
         $('#cup5').hide();
         $('#cup1').css('left','170px');
         $('#cup1').css('top','530px');
+
         $('#cup3').hide();
         $('#cup7').css('top','470px');
         $('#cup7').css('left','170px')
         $('#cup4').css('left','170px')
         $('#cup4').css('top','410px')
+
         $('#cup0').hide()
         $('#cup8').hide()
         $('#cup2').hide();
@@ -67,36 +82,41 @@ $(document).ready(() => {
       }
       const theyMakeThreeTwo = () => {
         $('.their_cup').show();
+
         $('#cup26').hide();
         $('#cup25').hide();
         $('#cup21').css('left','140px');
         $('#cup21').css('bottom','520px');
         $('#cup23').css('bottom','460px');
         $('#cup23').css('left','140px');
-        $('#cup27').css('bottom','460px');
+        $('#cup27').css('bottom','400px');
         $('#cup27').css('left','140px')
         $('#cup24').css('left','200px')
         $('#cup24').css('bottom','490px')
+
         $('#cup20').hide()
         $('#cup28').css('bottom','430px')
         $('#cup28').css('left','200px')
+
         $('#cup22').hide();
         $('#cup29').hide();
         
       }
       const theyMakeStoplight = () => {
         $('.their_cup').show();
+
         $('#cup26').hide();
         $('#cup25').hide();
         $('#cup21').css('left','170px');
         $('#cup21').css('bottom','520px');
+ 
         $('#cup23').hide();
         $('#cup27').css('bottom','460px');
         $('#cup27').css('left','170px')
         $('#cup24').css('left','170px')
         $('#cup24').css('bottom','400px')
+
         $('#cup20').hide()
-        $('#cup28').hide()
         $('#cup28').hide()
         $('#cup22').hide();
         $('#cup29').hide();
@@ -106,30 +126,38 @@ $(document).ready(() => {
       const theyMakeTriangle = () => {
         $('.their_cup').show();
         $('#cup26').hide();
+
         $('#cup25').hide();
         $('#cup21').css('left','140px');
         $('#cup21').css('bottom','520px');
         $('#cup23').css('bottom','460px');
         $('#cup23').css('left','140px');
+
         $('#cup27').hide();
         $('#cup24').css('left','200px')
         $('#cup24').css('bottom','490px')
         $('#cup20').hide();
+
         $('#cup28').hide();
+
         $('#cup22').hide();
+
         $('#cup29').hide();
       }
     
       $("#rerack").on('click',()=>{
         makeThreeTwo();
+        me.five_rerack=true;
       })
     
       $("#stoplight").on('click',()=>{
         makeStoplight();
+        me.three_rerack=true;
       })
     
       $("#triangle").on('click',()=>{
         makeTriangle();
+        me.three_rerack=true;
       })
     
       $("#start").click(function(){
@@ -143,14 +171,17 @@ $(document).ready(() => {
 
       $("#they_rerack").on('click',()=>{
         theyMakeThreeTwo();
+        them.five_rerack=true;
       })
     
       $("#they_stoplight").on('click',()=>{
         theyMakeStoplight();
+        them.three_rerack=true;
       })
     
       $("#they_triangle").on('click',()=>{
         theyMakeTriangle();
+        them.three_rerack=true;
       })
     
       $('#stop').click(function() {
@@ -189,17 +220,22 @@ $(document).ready(() => {
         let h = parseInt(g,10);
 
         if(d>h && d<(h+30) && b>f && b<(f+30)){
+          //$(`#cup${i}`).css('left','10000px');
           $(`#cup2${i}`).hide();
+          console.log('HIT!');
           them.cups_left--;
+          if (them.cups_left==0){them.won=true};
           them.streak.push('make');
 
         }
       }
       them.streak.push('miss');
+      if (them.streak[them.streak.length-2]=='miss'){them.heat=false}
       $('.their_ball').css('left','350px');
       $('.their_ball').css('bottom','10px');
       game.my_turn=true;
       checkFire();
+      checkIfIWon();
       checkButtons();
     })
 
@@ -216,18 +252,95 @@ $(document).ready(() => {
         let g = $(`#cup${i}`).css('top')
         let h = parseInt(g,10);
         if(d>h && d<(h+30) && b>f && b<(f+30)){
+          //$(`#cup${i}`).css('left','10000px');
           $(`#cup${i}`).hide();
+          console.log('HIT!')
           me.cups_left--;
+          if (me.cups_left==0){me.won=true}
           me.streak.push("make");
         }
       }
       $('.ball').css('left','0');
       $('.ball').css('top','10px');
       me.streak.push("miss");
+      if (me.streak[me.streak.length-2]=='miss'){me.heat=false}
       game.my_turn=false;
       checkFire();
+      checkIfTheyWon();
       checkButtons();    
     })
+
+const checkIfTheyWon = () => {
+  if(them.won==true && me.streak[me.streak.length-2]=="miss" && me.won==false){
+    console.log('they won!');
+  }
+  if(them.won==true && me.won==true && me.streak[me.streak.length-2]=="make"){
+    game.my_turn=true;
+  }
+  if(them.won==true && me.won==true && me.streak[me.streak.length-2]=="make"){
+    makeGentlemans();
+    makeTheirGentlemans();
+  }
+  if(them.won==true && me.won==true && me.streak[me.streak.length-2]=="miss" && them.streak[them.streak.length-2]=="make"){
+    console.log('they won');
+  }
+  if (them.won==false && me.won==false){
+    console.log('Your turn bucko!');
+  }
+  
+
+}
+
+const checkIfIWon = () => {
+  if(me.won==true && them.streak[them.streak.length-2]=="miss" && them.won==false){
+    console.log('I won!');
+  }
+  if(me.won==true && them.won==false && them.streak[them.streak.length-2]=="make"){
+    game.my_turn=false;
+  }
+  if(me.won==true && them.won==true && them.streak[them.streak.length-2]=="make"){
+    makeGentlemans();
+    makeTheirGentlemans();
+  }
+  if(them.won==true && me.won==true && me.streak[me.streak.length-2]=="make" && them.streak[them.streak.length-2]=="miss"){
+    console.log('I won');
+  }
+  if (them.won==false && me.won==false){
+    console.log('Your turn bucko!');
+  }
+}
+
+const makeTheirGentlemans = () => {
+  $('.their_cup').show();
+  $('#cup26').hide();
+  $('#cup25').hide();
+  $('#cup21').css('left','170px');
+  $('#cup21').css('bottom','520px');
+  $('#cup23').hide();
+  $('#cup27').hide();
+  $('#cup24').hide();
+  $('#cup20').hide();
+  $('#cup28').hide();
+  $('#cup28').hide();
+  $('#cup22').hide();
+  $('#cup29').hide();
+  
+}
+
+const makeGentlemans = () => {
+  $('.cup').show();
+  $('#cup6').hide();
+  $('#cup5').hide();
+  $('#cup1').css('left','170px');
+  $('#cup1').css('top','530px');
+  $('#cup3').hide();
+  $('#cup7').hide();
+  $('#cup4').hide();
+  $('#cup0').hide()
+  $('#cup8').hide()
+  $('#cup2').hide();
+  $('#cup9').hide();
+}
 
     const checkFire = () => {
       if (me.streak[me.streak.length-2]=="make" && me.streak[me.streak.length-4]=="make" && me.streak[me.streak.length-6]=="make" && me.heat==true){
@@ -252,7 +365,7 @@ $(document).ready(() => {
     }
 
     const checkButtons = () => {
-      if (them.cups_left==0 || me.cups_left==0){alert('The game is over')}
+      //if (them.cups_left==0 || me.cups_left==0){alert('The game is over')}
       if (game.my_turn==true){
         $('.ben').show();
         $('.ben.reracks').hide();
@@ -261,17 +374,17 @@ $(document).ready(() => {
         $('.fire').hide();
         $('.their_heat').hide();
         $('.their_fire').hide();
-        if (me.cups_left==5){
+        if (me.cups_left==5 && me.five_rerack==false){
           $('#rerack').show();
           $('#triangle').hide();
           $('#stoplight').hide();
         }
-        if (me.cups_left==3){
+        if (me.cups_left==3 && me.three_rerack==false){
           $('#rerack').hide();
           $('#triangle').show();
           $('#stoplight').show();
         }
-        if (me.streak[me.streak.length-2]=="make" && me.streak[me.streak.length-4]=="make"){
+        if (me.streak[me.streak.length-2]=="make" && me.streak[me.streak.length-4]=="make" && me.heat==false){
           $('.heat').show();
 
         }
@@ -284,17 +397,17 @@ $(document).ready(() => {
         $('.fire').hide();
         $('.their_heat').hide();
         $('.their_fire').hide();
-        if (them.cups_left==5 && game.my_turn == false){
+        if (them.cups_left==5 && game.my_turn == false && them.five_rerack==false){
           $('#they_rerack').show();
           $('#they_triangle').hide();
           $('#they_stoplight').hide();
         }
-        if (them.cups_left==3 && game.my_turn == false){
+        if (them.cups_left==3 && game.my_turn == false && them.three_rerack==false){
           $('#they_rerack').hide();
           $('#they_triangle').show();
           $('#they_stoplight').show();
         }
-        if (them.streak[them.streak.length-2]=="make" && them.streak[them.streak.length-4]=="make"){
+        if (them.streak[them.streak.length-2]=="make" && them.streak[them.streak.length-4]=="make" && them.heat==false){
           $('.their_heat').show();
 
         }

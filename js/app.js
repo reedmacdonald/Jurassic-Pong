@@ -1,6 +1,7 @@
 $(document).ready(() => {
   $('.ben.heat').hide();
   $('.ben.fire').hide();
+  $('.game_over').hide();
 
     const me = {cups_left:10,
                 streak:[],
@@ -221,7 +222,7 @@ $(document).ready(() => {
 
         if(d>h && d<(h+30) && b>f && b<(f+30)){
           //$(`#cup${i}`).css('left','10000px');
-          $(`#cup2${i}`).hide();
+          $(`#cup2${i}`).hide(200);
           console.log('HIT!');
           them.cups_left--;
           if (them.cups_left==0){them.won=true};
@@ -253,7 +254,7 @@ $(document).ready(() => {
         let h = parseInt(g,10);
         if(d>h && d<(h+30) && b>f && b<(f+30)){
           //$(`#cup${i}`).css('left','10000px');
-          $(`#cup${i}`).hide();
+          $(`#cup${i}`).hide(200);
           console.log('HIT!')
           me.cups_left--;
           if (me.cups_left==0){me.won=true}
@@ -273,6 +274,7 @@ $(document).ready(() => {
 const checkIfTheyWon = () => {
   if(them.won==true && me.streak[me.streak.length-2]=="miss" && me.won==false){
     console.log('they won!');
+    $('.game_over').show();
   }
   if(them.won==true && me.won==true && me.streak[me.streak.length-2]=="make"){
     game.my_turn=true;
@@ -283,6 +285,7 @@ const checkIfTheyWon = () => {
   }
   if(them.won==true && me.won==true && me.streak[me.streak.length-2]=="miss" && them.streak[them.streak.length-2]=="make"){
     console.log('they won');
+    $('.game_over').show();
   }
   if (them.won==false && me.won==false){
     console.log('Your turn bucko!');
@@ -291,9 +294,17 @@ const checkIfTheyWon = () => {
 
 }
 
+$('#game_over_yes').on('click',()=>{
+  location.reload();
+})
+$('#game_over_no').on('click',()=>{
+  $('.game_over').hide();
+})
+
 const checkIfIWon = () => {
   if(me.won==true && them.streak[them.streak.length-2]=="miss" && them.won==false){
     console.log('I won!');
+    $('.game_over').show();
   }
   if(me.won==true && them.won==false && them.streak[them.streak.length-2]=="make"){
     game.my_turn=false;
@@ -304,6 +315,7 @@ const checkIfIWon = () => {
   }
   if(them.won==true && me.won==true && me.streak[me.streak.length-2]=="make" && them.streak[them.streak.length-2]=="miss"){
     console.log('I won');
+    $('.game_over').show();
   }
   if (them.won==false && me.won==false){
     console.log('Your turn bucko!');
@@ -374,12 +386,12 @@ const makeGentlemans = () => {
         $('.fire').hide();
         $('.their_heat').hide();
         $('.their_fire').hide();
-        if (me.cups_left==5 && me.five_rerack==false){
+        if (me.cups_left==5 && me.five_rerack==false && me.heat==false){
           $('#rerack').show();
           $('#triangle').hide();
           $('#stoplight').hide();
         }
-        if (me.cups_left==3 && me.three_rerack==false){
+        if (me.cups_left==3 && me.three_rerack==false && me.heat==false){
           $('#rerack').hide();
           $('#triangle').show();
           $('#stoplight').show();
@@ -397,12 +409,12 @@ const makeGentlemans = () => {
         $('.fire').hide();
         $('.their_heat').hide();
         $('.their_fire').hide();
-        if (them.cups_left==5 && game.my_turn == false && them.five_rerack==false){
+        if (them.cups_left==5 && game.my_turn == false && them.five_rerack==false && them.heat==false){
           $('#they_rerack').show();
           $('#they_triangle').hide();
           $('#they_stoplight').hide();
         }
-        if (them.cups_left==3 && game.my_turn == false && them.three_rerack==false){
+        if (them.cups_left==3 && game.my_turn == false && them.three_rerack==false && them.heat==false){
           $('#they_rerack').hide();
           $('#they_triangle').show();
           $('#they_stoplight').show();

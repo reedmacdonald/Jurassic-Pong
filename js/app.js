@@ -8,16 +8,31 @@ $(document).ready(() => {
               heat:false,
             won:false,
           five_rerack: false,
-        three_rerack: false};
+          four_rerack: false,
+        three_rerack: false,
+        two_rerack: false,
+      one_rerack: false};
 
     const them = {cups_left:10,
                   streak: [],
                 heat:false,
               won:false,
             five_rerack: false,
-          three_rerack:false};
+            four_rerack: false,
+          three_rerack:false,
+          two_rerack: false,
+        one_rerack: false};
 
-    const game = {my_turn: true};
+    const game = {my_turn: true,
+    nightMode:false};
+
+    $('#gentlemans').on('click',()=>{
+      makeGentlemans();
+    })
+
+    $('#their_gentlemans').on('click',()=>{
+      makeTheirGentlemans();
+    })
     
       const makeThreeTwo = () => {
         $('.cup').show();
@@ -41,6 +56,34 @@ $(document).ready(() => {
         $('#cup9').hide();
         
       }
+
+      const makeZipper = () => {
+        $('.cup').show();
+ 
+        $('#cup6').hide();
+        $('#cup5').hide();
+        $('#cup1').css('left','140px');
+        $('#cup1').css('top','530px');
+        $('#cup3').css('top','470px');
+        $('#cup3').css('left','140px');
+        $('#cup7').hide();
+        $('#cup4').css('left','200px')
+        $('#cup4').css('top','440px')
+
+        $('#cup0').hide()
+        $('#cup8').css('top','500px')
+        $('#cup8').css('left','200px')
+
+        $('#cup2').hide();
+        $('#cup9').hide();
+        
+      }
+
+      $('#zipper').on('click',()=>{
+        makeZipper();
+        me.four_rerack=true;
+      })
+
       const makeTriangle = () => {
         $('.cup').show();
 
@@ -81,6 +124,32 @@ $(document).ready(() => {
         $('#cup2').hide();
         $('#cup9').hide();
       }
+
+
+      const makeTwoDown = () => {
+        $('.cup').show();
+
+        $('#cup6').hide();
+        $('#cup5').hide();
+        $('#cup1').css('left','170px');
+        $('#cup1').css('top','530px');
+
+        $('#cup3').hide();
+        $('#cup7').css('top','470px');
+        $('#cup7').css('left','170px')
+        $('#cup4').hide();
+
+        $('#cup0').hide()
+        $('#cup8').hide()
+        $('#cup2').hide();
+        $('#cup9').hide();
+      }
+
+      $('#makeTwoDown').on('click',()=>{
+        makeTwoDown();
+        me.two_rerack=true;
+      })
+
       const theyMakeThreeTwo = () => {
         $('.their_cup').show();
 
@@ -103,6 +172,33 @@ $(document).ready(() => {
         $('#cup29').hide();
         
       }
+
+      const theyMakeZipper = () => {
+        $('.their_cup').show();
+
+        $('#cup26').hide();
+        $('#cup25').hide();
+        $('#cup21').css('left','140px');
+        $('#cup21').css('bottom','520px');
+        $('#cup23').css('bottom','460px');
+        $('#cup23').css('left','140px');
+        $('#cup27').hide();
+        $('#cup24').css('left','200px')
+        $('#cup24').css('bottom','490px')
+
+        $('#cup20').hide()
+        $('#cup28').css('bottom','430px')
+        $('#cup28').css('left','200px')
+
+        $('#cup22').hide();
+        $('#cup29').hide();
+        
+      }
+
+      $('#they_zipper').on('click',()=>{
+        theyMakeZipper();
+      })
+
       const theyMakeStoplight = () => {
         $('.their_cup').show();
 
@@ -123,6 +219,32 @@ $(document).ready(() => {
         $('#cup29').hide();
         
       }
+
+      const theyMakeTwoDown = () => {
+        $('.their_cup').show();
+
+        $('#cup26').hide();
+        $('#cup25').hide();
+        $('#cup21').css('left','170px');
+        $('#cup21').css('bottom','520px');
+ 
+        $('#cup23').hide();
+        $('#cup27').css('bottom','460px');
+        $('#cup27').css('left','170px')
+        $('#cup24').hide();
+    
+
+        $('#cup20').hide()
+        $('#cup28').hide()
+        $('#cup22').hide();
+        $('#cup29').hide();
+        
+      }
+
+      $('#theyTwoDown').on('click',()=>{
+        theyMakeTwoDown();
+        them.two_rerack=true;
+      })
       
       const theyMakeTriangle = () => {
         $('.their_cup').show();
@@ -290,6 +412,12 @@ const checkIfTheyWon = () => {
   
 
 }
+$('#nightMode').on('click',()=>{
+  if(game.nightMode==false){$('body').css("background-image",'url(https://lovepirate77.files.wordpress.com/2015/07/img_4757.png)');
+game.nightMode=true;}
+  else {$('body').css("background-image","url(https://i.pinimg.com/originals/59/03/60/590360c0e4f42455bbd4d35d50a9e6b4.jpg)");
+game.nightMode=false;}
+})
 
 $('#game_over_yes').on('click',()=>{
   location.reload();
@@ -333,6 +461,7 @@ const makeTheirGentlemans = () => {
   $('#cup28').hide();
   $('#cup22').hide();
   $('#cup29').hide();
+  them.one_rerack=false;
   
 }
 
@@ -349,6 +478,7 @@ const makeGentlemans = () => {
   $('#cup8').hide()
   $('#cup2').hide();
   $('#cup9').hide();
+  me.one_rerack=true;
 }
 
     const checkFire = () => {
@@ -388,10 +518,22 @@ const makeGentlemans = () => {
           $('#triangle').hide();
           $('#stoplight').hide();
         }
+        if (me.cups_left==4 && me.four_rerack==false && me.heat==false){
+          $('#zipper').show();
+          $('#rerack').hide();
+          $('#triangle').hide();
+          $('#stoplight').hide();
+        }
         if (me.cups_left==3 && me.three_rerack==false && me.heat==false){
           $('#rerack').hide();
           $('#triangle').show();
           $('#stoplight').show();
+        }
+        if (me.cups_left==1 && me.one_rerack==false && me.heat==false){
+          $('#gentlemans').show();
+          $('#rerack').hide();
+          $('#triangle').hide();
+          $('#stoplight').hide();
         }
         if (me.streak[me.streak.length-2]=="make" && me.streak[me.streak.length-4]=="make" && me.heat==false){
           $('.heat').show();
@@ -411,10 +553,22 @@ const makeGentlemans = () => {
           $('#they_triangle').hide();
           $('#they_stoplight').hide();
         }
+        if (them.cups_left==4 && game.my_turn == false && them.four_rerack==false && them.heat==false){
+          $('#they_zipper').show();
+          $('#they_rerack').hide();
+          $('#they_triangle').hide();
+          $('#they_stoplight').hide();
+        }
         if (them.cups_left==3 && game.my_turn == false && them.three_rerack==false && them.heat==false){
           $('#they_rerack').hide();
           $('#they_triangle').show();
           $('#they_stoplight').show();
+        }
+        if (them.cups_left==1 && game.my_turn == false && them.one_rerack==false && them.heat==false){
+          $('#their_gentlemans').show();
+          $('#they_rerack').hide();
+          $('#they_triangle').hide();
+          $('#they_stoplight').hide();
         }
         if (them.streak[them.streak.length-2]=="make" && them.streak[them.streak.length-4]=="make" && them.heat==false){
           $('.their_heat').show();

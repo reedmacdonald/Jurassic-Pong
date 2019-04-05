@@ -71,7 +71,7 @@ h1 {
 }
 
 .ball {
-    background-image: url('https://banner2.kisspng.com/20180215/zwq/kisspng-dinosaur-footprints-reservation-tyrannosaurus-rex-large-dinosaurs-5a851587e888e7.8088843315186712399525.jpg');
+    background-image: url('https://cdn.instructables.com/FLW/NT3Q/I7CCFVGH/FLWNT3QI7CCFVGH.LARGE.jpg');
     height:30px;
     width:30px;
     background-color: white;
@@ -81,6 +81,7 @@ h1 {
 .their_ball {
     height:30px;
     width:30px;
+    background-image: url('https://cdn.instructables.com/FLW/NT3Q/I7CCFVGH/FLWNT3QI7CCFVGH.LARGE.jpg');
     background-color: white;
     border-radius: 50%;
     bottom: 10px;
@@ -90,7 +91,7 @@ h1 {
 }
 .ben {
     height: 40px fit-content;
-    width: 145px;
+    width: 160px;
     border: 2px solid darkgreen;
     background-color: lightgreen;
     text-decoration: darkred;
@@ -104,7 +105,7 @@ h1 {
 
 .heat {
     height: 40px fit-content;
-    width: 145px;
+    width: 160px;
     border: 2px solid darkred;
     background-color: lightgreen;
     text-decoration: darkred;
@@ -116,7 +117,7 @@ h1 {
 }
 .their_heat {
     height: 40px fit-content;
-    width: 145px;
+    width: 160px;
     border: 2px solid darkred;
     background-color: lightgreen;
     text-decoration: darkred;
@@ -129,7 +130,7 @@ h1 {
 
 .fire {
     height: 40px fit-content;
-    width: 145px;
+    width: 160px;
     border: 2px solid darkgreen;
     background-color: lightgreen;
     text-decoration: darkred;
@@ -140,7 +141,7 @@ h1 {
 }
 .their_fire {
     height: 40px fit-content;
-    width: 145px;
+    width: 160px;
     border: 2px solid darkgreen;
     background-color: lightgreen;
     text-decoration: darkred;
@@ -152,7 +153,7 @@ h1 {
 
 .their_ben {
     height: 40px fit-content;
-    width: 145px;
+    width: 160px;
     border: 2px solid darkgreen;
     background-color: lightgreen;
     text-decoration: darkred;

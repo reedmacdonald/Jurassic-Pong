@@ -162,7 +162,7 @@ $(document).ready(() => {
       })
     
       $("#start").click(function(){
-        $(".ball").animate({left: "700px"},4000);
+        $(".ball").animate({top: '700px', left: "700px"},4000);
       });
     
       $("#nightMode").click(function(){
@@ -185,26 +185,21 @@ $(document).ready(() => {
         them.three_rerack=true;
       })
     
-      $('#stop').click(function() {
-        $('.ball').stop();
-    
-    })
     
     $("#go").click(function(){
-      $(".ball").animate({top: "700px"},4000);
+      $('.ball').stop();
+      $(".ball").animate({left: "10px", top: "700px"},4000);
     })
     
-    $('#they_stop').click(function() {
-      $('.their_ball').stop();
-    
-    })
     
     $("#they_go").click(function(){
-    $(".their_ball").animate({bottom: "700px"},4000);
+    $('.their_ball').stop();
+    $(".their_ball").animate({bottom: "700px",left:'10px'},4000);
     })
     
     $("#they_start").click(function(){
-      $(".their_ball").animate({left: "10px"},4000);
+      
+      $(".their_ball").animate({bottom: "700px",left: "700px"},4000);
     });
     
     $('#they_endeth').click(function() {
@@ -232,7 +227,7 @@ $(document).ready(() => {
       }
       them.streak.push('miss');
       if (them.streak[them.streak.length-2]=='miss'){them.heat=false}
-      $('.their_ball').css('left','350px');
+      $('.their_ball').css('left','200px');
       $('.their_ball').css('bottom','10px');
       game.my_turn=true;
       checkFire();
@@ -261,7 +256,7 @@ $(document).ready(() => {
           me.streak.push("make");
         }
       }
-      $('.ball').css('left','0');
+      $('.ball').css('left','200px');
       $('.ball').css('top','10px');
       me.streak.push("miss");
       if (me.streak[me.streak.length-2]=='miss'){me.heat=false}

@@ -1,6 +1,12 @@
-
+body{
+    background-image: url("https://wallpapercave.com/wp/wp3182852.jpg");
+}
+h1 {
+    color: aliceblue;
+}
 .table {
     position: fixed;
+    margin: 0 auto;
     height:600px;
     width:400px;
     border-color: black;
@@ -44,45 +50,55 @@
     text-decoration: darkred;
     font-family: fantasy;
     font: 30px bold;
+    margin-top: 20px;
+    margin-right: 400px;
 
 }
 
 .heat {
     height: 40px fit-content;
-    width: 120px;
+    width: 120px fit-content;
     border: 2px solid darkgreen;
     background-color: lightgreen;
     text-decoration: darkred;
     font-family: fantasy;
     font: 30px bold;
+    margin-top: 20px;
+    margin-right: 400px;
 }
 .their_heat {
     height: 40px fit-content;
-    width: 120px;
+    width: 120px fit-content;
     border: 2px solid darkgreen;
     background-color: lightgreen;
     text-decoration: darkred;
     font-family: fantasy;
     font: 30px bold;
+    margin-top: 20px;
+    margin-right: 400px;
 }
 
 .fire {
     height: 40px fit-content;
-    width: 120px;
+    width: 120px fit-content;
     border: 2px solid darkgreen;
     background-color: lightgreen;
     text-decoration: darkred;
     font-family: fantasy;
     font: 30px bold;
+    margin-top: 20px;
+    margin-right: 400px;
 }
 .their_fire {
     height: 40px fit-content;
-    width: 120px;
+    width: 120px fit-content;
     border: 2px solid darkgreen;
     background-color: lightgreen;
     text-decoration: darkred;
     font-family: fantasy;
     font: 30px bold;
+    margin-top: 20px;
+    margin-right: 400px;
 }
 
 .their_ben {
@@ -90,17 +106,17 @@
     width: 120px fit-content;
     border: 2px solid darkgreen;
     background-color: lightgreen;
-    text-decoration: blueviolet;
+    text-decoration: darkred;
     font-family: fantasy;
     font: 30px bold;
+    margin-top: 20px;
+    margin-right: 400px;
 }
 
 
-nav {
-    position: absolute;
-    left:500px;
-    top: 100px;
-    text-align: right;
+.bens {
+
+    margin-left: 430px;
     height: 100%;
 }
 

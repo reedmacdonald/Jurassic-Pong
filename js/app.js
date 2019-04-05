@@ -11,9 +11,6 @@ $(document).ready(() => {
                 heat:false};
 
     const game = {my_turn: true};
-
-    
-
     
       const makeThreeTwo = () => {
         $('.cup').show();
@@ -232,51 +229,27 @@ $(document).ready(() => {
       checkButtons();    
     })
 
-
-    
-
     const checkFire = () => {
-      console.log('I am checking for fire');
       if (me.streak[me.streak.length-2]=="make" && me.streak[me.streak.length-4]=="make" && me.streak[me.streak.length-6]=="make" && me.heat==true){
-
-        console.log('I am making the ball a fire because I am on fire')
         $('.ball').css("background-image","url(https://image.freepik.com/free-photo/blazing-fire-flame-background-textured_3236-1123.jpg)")
-        console.log('Still your turn because you are on fire');
+
         game.my_turn=true;
       }
       else {
-        console.log('I found no fire for you')
+
         $('.ball').css("background-color","white");
         $('.ball').css("background-image","none");
         if (them.streak[them.streak.length-2]=="make" && them.streak[them.streak.length-4]=="make" && them.streak[them.streak.length-6]=="make" && them.heat==true){
-          console.log('Still there turn because they are on fire');
-          console.log('I am making the ball a fire because THEY ARE on fire')
           $('.their_ball').css("background-image","url(https://image.freepik.com/free-photo/blazing-fire-flame-background-textured_3236-1123.jpg)")
           game.my_turn=false;
   
         }
         else {
-          console.log('I found no fire for them')
           $('.their_ball').css("background-color","white");
           $('.their_ball').css("background-image","none");
         }
       }
-      //if (them.streak[them.streak.length-2]=="make" && them.streak[them.streak.length-4]=="make" && them.streak[them.streak.length-6]=="make" && them.heat==true){
-      //  console.log('Still there turn because they are on fire');
-      //  console.log('I am making the ball a fire because THEY ARE on fire')
-      //  $('.their_ball').css("background-image","url(https://image.freepik.com/free-photo/blazing-fire-flame-background-textured_3236-1123.jpg)")
-      //  game.my_turn=false;
-
-      //}
-      //else {
-      //  console.log('I found no fire for them')
-      //  $('.their_ball').css("background-color","white");
-      //}
     }
-
-
-
-
 
     const checkButtons = () => {
       if (them.cups_left==0 || me.cups_left==0){alert('The game is over')}
@@ -300,7 +273,7 @@ $(document).ready(() => {
         }
         if (me.streak[me.streak.length-2]=="make" && me.streak[me.streak.length-4]=="make"){
           $('.heat').show();
-          console.log('I am showing the heat button because I am heating')
+
         }
       }
       else {
@@ -323,29 +296,23 @@ $(document).ready(() => {
         }
         if (them.streak[them.streak.length-2]=="make" && them.streak[them.streak.length-4]=="make"){
           $('.their_heat').show();
-          console.log('It is showing the heat button because they are heating')
+
         }
       }
     }
     
     checkButtons();
-    
-
         
-
-
-    
 $('.heat').on('click',()=>{
         if (game.my_turn==true){
           me.heat=true;
-          console.log('I am heating!')
         }
     })
 
 $('.their_heat').on('click',()=>{
       if (game.my_turn==false){
         them.heat=true;
-        console.log('They are heating!')
+
       }
   })
     

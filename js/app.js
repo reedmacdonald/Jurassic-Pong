@@ -461,7 +461,7 @@ const makeTheirGentlemans = () => {
   $('#cup28').hide();
   $('#cup22').hide();
   $('#cup29').hide();
-  them.one_rerack=false;
+  them.one_rerack=true;
   
 }
 
@@ -529,6 +529,13 @@ const makeGentlemans = () => {
           $('#triangle').show();
           $('#stoplight').show();
         }
+        if (me.cups_left==2 && me.two_rerack==false && me.heat==false){
+          $('#twoDown').show();
+          $('#zipper').hide();
+          $('#rerack').hide();
+          $('#triangle').hide();
+          $('#stoplight').hide();
+        }
         if (me.cups_left==1 && me.one_rerack==false && me.heat==false){
           $('#gentlemans').show();
           $('#rerack').hide();
@@ -563,6 +570,13 @@ const makeGentlemans = () => {
           $('#they_rerack').hide();
           $('#they_triangle').show();
           $('#they_stoplight').show();
+        }
+        if (them.cups_left==2 && game.my_turn == false && them.two_rerack==false && them.heat==false){
+          $('#theyTwoDown').show();
+          $('#they_zipper').hide();
+          $('#they_rerack').hide();
+          $('#they_triangle').hide();
+          $('#they_stoplight').hide();
         }
         if (them.cups_left==1 && game.my_turn == false && them.one_rerack==false && them.heat==false){
           $('#their_gentlemans').show();

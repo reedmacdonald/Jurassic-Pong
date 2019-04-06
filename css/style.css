@@ -33,6 +33,26 @@ h1 {
     background-color: black;
     top:10px;
 }
+
+.ruleSet {
+    height:600px;
+    width:800px;
+    position: fixed;
+    background-image: url('http://en.es-static.us/upl/2012/03/dinosaurs.jpg');
+    border:10px solid black;
+    background-color: black;
+    top:10px;
+}
+
+.ruleSetHeading {
+    position: absolute;
+    color: rgb(13, 66, 13);
+    left:210px;
+    font-size: 70px;
+    font-family: fantasy;
+}
+
+
 .game_over_buttons {
 
     height: 60px;
@@ -45,6 +65,27 @@ h1 {
     position: absolute;
     font-family: fantasy;
 }
+
+ul {
+
+
+    font-size: 30px;
+    border: 2px solid black;
+    background-color: skyblue;
+    top: 140px;
+    left: 19px;
+    opacity:.9;
+    position: absolute;
+    font-family: fantasy;
+}
+
+li {
+    font-size: 30px;
+    font-family: fantasy;
+}
+
+
+
 
 .words {
     position: absolute;
@@ -102,6 +143,7 @@ h1 {
     opacity: .9;
 
 }
+
 
 .heat {
     height: 40px fit-content;

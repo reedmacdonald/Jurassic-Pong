@@ -2,6 +2,7 @@ $(document).ready(() => {
   $('.ben.heat').hide();
   $('.ben.fire').hide();
   $('.game_over').hide();
+  $('.ruleSet').hide();
 
     const me = {cups_left:10,
                 streak:[],
@@ -27,6 +28,20 @@ $(document).ready(() => {
 
     const game = {my_turn: true,
     nightMode:false};
+
+    $('#their_houseRules').on('click', ()=>{
+      $('.ruleSet').show();
+    })
+
+    $('#houseRules').on('click', ()=>{
+      $('.ruleSet').show();
+    })
+
+    $('.ruleSet').on('click', ()=>{
+      $('.ruleSet').hide();
+    })
+
+
 
     $('#gentlemans').on('click',()=>{
       makeGentlemans();
@@ -608,6 +623,21 @@ const makeGentlemans = () => {
     }
     
     checkButtons();
+
+    const resetBalls = () => {
+      $('.ball').css('left','200px');
+      $('.ball').css('top','10px');
+      $('.their_ball').css('left','200px');
+      $('.their_ball').css('bottom','10px');
+    }
+
+    $('#their_resetBalls').on('click', ()=>{
+      resetBalls();
+    })
+
+    $('#resetBalls').on('click', ()=>{
+      resetBalls();
+    })
         
 $('.heat').on('click',()=>{
         if (game.my_turn==true){

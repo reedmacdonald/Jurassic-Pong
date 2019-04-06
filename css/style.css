@@ -66,6 +66,30 @@ h1 {
     font-family: fantasy;
 }
 
+#their_houseRules {
+    position: absolute;
+    left:440px;
+    top: 540px;
+}
+
+#their_resetBalls{
+    position: absolute;
+    left:440px;
+    top: 630px;
+}
+
+#houseRules {
+    position: absolute;
+    left: 440px;
+    top: 540px;
+}
+
+#resetBalls {
+    position: absolute;
+    left: 440px;
+    top: 630px;
+}
+
 ul {
 
 

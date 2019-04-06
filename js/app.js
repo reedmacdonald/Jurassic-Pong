@@ -11,7 +11,8 @@ $(document).ready(() => {
           four_rerack: false,
         three_rerack: false,
         two_rerack: false,
-      one_rerack: false};
+      one_rerack: false,
+    reracks:0};
 
     const them = {cups_left:10,
                   streak: [],
@@ -21,17 +22,22 @@ $(document).ready(() => {
             four_rerack: false,
           three_rerack:false,
           two_rerack: false,
-        one_rerack: false};
+        one_rerack: false,
+      reracks:0};
 
     const game = {my_turn: true,
     nightMode:false};
 
     $('#gentlemans').on('click',()=>{
       makeGentlemans();
+      me.reracks++;
+      me.one_rerack=true;
     })
 
     $('#their_gentlemans').on('click',()=>{
       makeTheirGentlemans();
+      them.reracks++;
+      me.one_rerack=true;
     })
     
       const makeThreeTwo = () => {
@@ -82,6 +88,7 @@ $(document).ready(() => {
       $('#zipper').on('click',()=>{
         makeZipper();
         me.four_rerack=true;
+        me.reracks++;
       })
 
       const makeTriangle = () => {
@@ -145,9 +152,10 @@ $(document).ready(() => {
         $('#cup9').hide();
       }
 
-      $('#makeTwoDown').on('click',()=>{
+      $('#twoDown').on('click',()=>{
         makeTwoDown();
         me.two_rerack=true;
+        me.reracks++;
       })
 
       const theyMakeThreeTwo = () => {
@@ -197,6 +205,7 @@ $(document).ready(() => {
 
       $('#they_zipper').on('click',()=>{
         theyMakeZipper();
+        them.reracks++;
       })
 
       const theyMakeStoplight = () => {
@@ -244,6 +253,7 @@ $(document).ready(() => {
       $('#theyTwoDown').on('click',()=>{
         theyMakeTwoDown();
         them.two_rerack=true;
+        them.reracks++;
       })
       
       const theyMakeTriangle = () => {
@@ -271,16 +281,19 @@ $(document).ready(() => {
       $("#rerack").on('click',()=>{
         makeThreeTwo();
         me.five_rerack=true;
+        me.reracks++;
       })
     
       $("#stoplight").on('click',()=>{
         makeStoplight();
         me.three_rerack=true;
+        me.reracks++;
       })
     
       $("#triangle").on('click',()=>{
         makeTriangle();
         me.three_rerack=true;
+        me.reracks++;
       })
     
       $("#start").mousedown(function(){
@@ -295,28 +308,31 @@ $(document).ready(() => {
       $("#they_rerack").on('click',()=>{
         theyMakeThreeTwo();
         them.five_rerack=true;
+        them.reracks++;
       })
     
       $("#they_stoplight").on('click',()=>{
         theyMakeStoplight();
         them.three_rerack=true;
+        them.reracks++;
       })
     
       $("#they_triangle").on('click',()=>{
         theyMakeTriangle();
         them.three_rerack=true;
+        them.reracks++;
       })
     
     
     $("#start").mouseup(function(){
       $('.ball').stop();
-      $(".ball").animate({left: "10px", top: "700px"},4000);
+      $(".ball").animate({left: "10px", top: "700px"},2500);
     })
     
     
     $("#they_start").mouseup(function(){
     $('.their_ball').stop();
-    $(".their_ball").animate({bottom: "700px",left:'10px'},4000);
+    $(".their_ball").animate({bottom: "700px",left:'10px'},2500);
     })
     
     $("#they_start").mousedown(function(){
@@ -524,12 +540,12 @@ const makeGentlemans = () => {
           $('#triangle').hide();
           $('#stoplight').hide();
         }
-        if (me.cups_left==3 && me.three_rerack==false && me.heat==false){
+        if (me.cups_left==3 && me.three_rerack==false && me.heat==false && me.reracks<2){
           $('#rerack').hide();
           $('#triangle').show();
           $('#stoplight').show();
         }
-        if (me.cups_left==2 && me.two_rerack==false && me.heat==false){
+        if (me.cups_left==2 && me.two_rerack==false && me.heat==false && me.reracks<2){
           $('#twoDown').show();
           $('#zipper').hide();
           $('#rerack').hide();
@@ -566,12 +582,12 @@ const makeGentlemans = () => {
           $('#they_triangle').hide();
           $('#they_stoplight').hide();
         }
-        if (them.cups_left==3 && game.my_turn == false && them.three_rerack==false && them.heat==false){
+        if (them.cups_left==3 && game.my_turn == false && them.three_rerack==false && them.heat==false && them.reracks<2){
           $('#they_rerack').hide();
           $('#they_triangle').show();
           $('#they_stoplight').show();
         }
-        if (them.cups_left==2 && game.my_turn == false && them.two_rerack==false && them.heat==false){
+        if (them.cups_left==2 && game.my_turn == false && them.two_rerack==false && them.heat==false && them.reracks<2){
           $('#theyTwoDown').show();
           $('#they_zipper').hide();
           $('#they_rerack').hide();
@@ -596,12 +612,14 @@ const makeGentlemans = () => {
 $('.heat').on('click',()=>{
         if (game.my_turn==true){
           me.heat=true;
+          $('.heat').hide();
         }
     })
 
 $('.their_heat').on('click',()=>{
       if (game.my_turn==false){
         them.heat=true;
+        $('.their_heat').hide()
 
       }
   })

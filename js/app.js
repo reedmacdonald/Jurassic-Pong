@@ -370,12 +370,12 @@ $(document).ready(() => {
 
         if(d>h && d<(h+30) && b>f && b<(f+30)){
           //$(`#cup${i}`).css('left','10000px');
-          if($(`#cup2${i}`).css("display")=="none"){them.cups_left++}//delete this if it messes everything
+          //if($(`#cup2${i}`).css("display")=="none"){them.cups_left++}//delete this if it messes everything
           $(`#cup2${i}`).hide(200);
           console.log('HIT!');
-          them.cups_left--;
+          if($(`#cup2${i}`).css("display")!="none"){them.cups_left--;}//remove the first part of this if it fucks things up
           if (them.cups_left==0){them.won=true};
-          them.streak.push('make');
+          if($(`#cup2${i}`).css("display")!="none"){them.streak.push('make')};
 
         }
       }
@@ -403,12 +403,12 @@ $(document).ready(() => {
         let h = parseInt(g,10);
         if(d>h && d<(h+30) && b>f && b<(f+30)){
           //$(`#cup${i}`).css('left','10000px');
-          if($(`#cup${i}`).css("display")=="none"){me.cups_left++}//Delete this if it messes up everything
+          //if($(`#cup${i}`).css("display")=="none"){me.cups_left++}//Delete this if it messes up everything
           $(`#cup${i}`).hide(200);
           console.log('HIT!')
-          me.cups_left--;
+          if($(`#cup${i}`).css("display")!="none"){me.cups_left--;}
           if (me.cups_left==0){me.won=true}
-          me.streak.push("make");
+          if($(`#cup${i}`).css("display")!="none"){me.streak.push("make")};//same thing here I may have ruined this
         }
       }
       $('.ball').css('left','200px');
@@ -544,23 +544,23 @@ const makeGentlemans = () => {
         $('.fire').hide();
         $('.their_heat').hide();
         $('.their_fire').hide();
-        if (me.cups_left==5 && me.five_rerack==false && me.heat==false){
+        if (me.cups_left==5 && me.five_rerack==false && me.heat==false  && them.won!=true){
           $('#rerack').show();
           $('#triangle').hide();
           $('#stoplight').hide();
         }
-        if (me.cups_left==4 && me.four_rerack==false && me.heat==false){
+        if (me.cups_left==4 && me.four_rerack==false && me.heat==false && them.won!=true){
           $('#zipper').show();
           $('#rerack').hide();
           $('#triangle').hide();
           $('#stoplight').hide();
         }
-        if (me.cups_left==3 && me.three_rerack==false && me.heat==false && me.reracks<2){
+        if (me.cups_left==3 && me.three_rerack==false && me.heat==false && me.reracks<2 && them.won!=true){
           $('#rerack').hide();
           $('#triangle').show();
           $('#stoplight').show();
         }
-        if (me.cups_left==2 && me.two_rerack==false && me.heat==false && me.reracks<2){
+        if (me.cups_left==2 && me.two_rerack==false && me.heat==false && me.reracks<2 && them.won!=true){
           $('#twoDown').show();
           $('#zipper').hide();
           $('#rerack').hide();
@@ -586,23 +586,23 @@ const makeGentlemans = () => {
         $('.fire').hide();
         $('.their_heat').hide();
         $('.their_fire').hide();
-        if (them.cups_left==5 && game.my_turn == false && them.five_rerack==false && them.heat==false){
+        if (them.cups_left==5 && game.my_turn == false && them.five_rerack==false && them.heat==false && me.won!=true){
           $('#they_rerack').show();
           $('#they_triangle').hide();
           $('#they_stoplight').hide();
         }
-        if (them.cups_left==4 && game.my_turn == false && them.four_rerack==false && them.heat==false){
+        if (them.cups_left==4 && game.my_turn == false && them.four_rerack==false && them.heat==false && me.won!=true){
           $('#they_zipper').show();
           $('#they_rerack').hide();
           $('#they_triangle').hide();
           $('#they_stoplight').hide();
         }
-        if (them.cups_left==3 && game.my_turn == false && them.three_rerack==false && them.heat==false && them.reracks<2){
+        if (them.cups_left==3 && game.my_turn == false && them.three_rerack==false && them.heat==false && them.reracks<2 && me.won!=true){
           $('#they_rerack').hide();
           $('#they_triangle').show();
           $('#they_stoplight').show();
         }
-        if (them.cups_left==2 && game.my_turn == false && them.two_rerack==false && them.heat==false && them.reracks<2){
+        if (them.cups_left==2 && game.my_turn == false && them.two_rerack==false && them.heat==false && them.reracks<2 && me.won!=true){
           $('#theyTwoDown').show();
           $('#they_zipper').hide();
           $('#they_rerack').hide();

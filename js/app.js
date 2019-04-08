@@ -273,16 +273,14 @@ $('.their_heat').on('click',()=>{
 
       const makeFlower = () => {
         $('.cup').show();
-        $(`.cup`).css("background-image","https://thumbs.dreamstime.com/t/background-beer-foam-bubbles-close-up-background-beer-foam-bubbles-111550412.jpg");
+        
         $('#cup0').hide();
-        $('#cup0').css()
         $('#cup1').hide();
         $('#cup2').css('top','530px');
         $('#cup2').css('left','140px');
         $('#cup3').css('top','530px');
         $('#cup3').css('left','200px');
         $('#cup4').hide();
-        $('#cup4').css('top','440px')
         $('#cup5').css('left','110px')
         $('#cup5').css('top','470px')
         $('#cup6').css('top','470px');

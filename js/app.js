@@ -13,7 +13,8 @@ $(document).ready(() => {
         three_rerack: false,
         two_rerack: false,
       one_rerack: false,
-    reracks:0};
+    reracks:0,
+  overtime: false}
 
     const them = {cups_left:10,
                   streak: [],
@@ -24,7 +25,8 @@ $(document).ready(() => {
           three_rerack:false,
           two_rerack: false,
         one_rerack: false,
-      reracks:0};
+      reracks:0,
+    overtime: false};
 
     const game = {my_turn: true,
     nightMode:false};
@@ -173,6 +175,27 @@ $(document).ready(() => {
         me.reracks++;
       })
 
+
+
+      const makeGentlemans = () => {
+        $('.cup').show();
+        $('#cup6').hide();
+        $('#cup5').hide();
+        $('#cup1').show();
+        $('#cup1').css('display','block');
+        $('#cup1').css('left','170px');
+        $('#cup1').css('top','530px');
+        $('#cup3').hide();
+        $('#cup7').hide();
+        $('#cup4').hide();
+        $('#cup0').hide()
+        $('#cup8').hide()
+        $('#cup2').hide();
+        $('#cup9').hide();
+        me.one_rerack=true;
+        
+      }
+
       const theyMakeThreeTwo = () => {
         $('.their_cup').show();
 
@@ -263,6 +286,24 @@ $(document).ready(() => {
         $('#cup22').hide();
         $('#cup29').hide();
         
+      }
+
+      const makeTheirGentlemans = () => {
+        $('.their_cup').show();
+        $('#cup26').hide();
+        $('#cup25').hide();
+        $('cup21').css('display','block');
+        $('#cup21').css('left','170px');
+        $('#cup21').css('bottom','520px');
+        $('#cup23').hide();
+        $('#cup27').hide();
+        $('#cup24').hide();
+        $('#cup20').hide();
+        $('#cup28').hide();
+        $('#cup28').hide();
+        $('#cup22').hide();
+        $('#cup29').hide();
+        them.one_rerack=true;
       }
 
       $('#theyTwoDown').on('click',()=>{
@@ -426,18 +467,19 @@ const checkIfTheyWon = () => {
     console.log('they won!');
     $('.game_over').show();
   }
-  if(them.won==true && me.won==true && me.streak[me.streak.length-2]=="make"){
+  if(them.won==true && me.won==false && me.streak[me.streak.length-2]=="make" ){
     game.my_turn=true;
   }
   if(them.won==true && me.won==true && me.streak[me.streak.length-2]=="make"){
+    console.log('You have both cleared the rack. I am making gentlemans for both of you')
     makeGentlemans();
     makeTheirGentlemans();
-    me.won=false;
-    them.won=false;
-    me.cups_left=1;
-    them.cups_left=1;
+    //me.won=false;
+    //them.won=false;
+    //me.cups_left=1;
+    //them.cups_left=1;
   }
-  if(them.won==true && me.won==true && me.streak[me.streak.length-2]=="miss" && them.streak[them.streak.length-2]=="make"){
+  if(them.won==true && me.won==true && me.streak[me.streak.length-2]=="miss" && them.streak[them.streak.length-2]=="make" && me.streak[me.streak.length-4]=="miss"/*Herein lies the problem. Under this logic, you make it, they rebuttal, they get it again, they miss, you win*/){
     console.log('they won');
     $('.game_over').show();
   }
@@ -470,14 +512,15 @@ const checkIfIWon = () => {
     game.my_turn=false;
   }
   if(me.won==true && them.won==true && them.streak[them.streak.length-2]=="make"){
+    console.log('You have both cleared the rack. I am making gentlemans for both of you')
     makeGentlemans();
     makeTheirGentlemans();
-    me.won=false;
-    them.won=false;
-    me.cups_left=1;
-    them.cups_left=1;
+    //me.won=false;
+    //them.won=false;
+    //me.cups_left=1;//I should change one of these
+    //them.cups_left=1;// I should change one of these
   }
-  if(them.won==true && me.won==true && me.streak[me.streak.length-2]=="make" && them.streak[them.streak.length-2]=="miss"){
+  if(them.won==true && me.won==true && me.streak[me.streak.length-2]=="make" && them.streak[them.streak.length-2]=="miss" && them.streak[them.streak.length-4]=="miss"/*Think about adding overtime*/){
     console.log('I won');
     $('.game_over').show();
   }
@@ -486,39 +529,9 @@ const checkIfIWon = () => {
   }
 }
 
-const makeTheirGentlemans = () => {
-  $('.their_cup').show();
-  $('#cup26').hide();
-  $('#cup25').hide();
-  $('#cup21').css('left','170px');
-  $('#cup21').css('bottom','520px');
-  $('#cup23').hide();
-  $('#cup27').hide();
-  $('#cup24').hide();
-  $('#cup20').hide();
-  $('#cup28').hide();
-  $('#cup28').hide();
-  $('#cup22').hide();
-  $('#cup29').hide();
-  them.one_rerack=true;
-  
-}
 
-const makeGentlemans = () => {
-  $('.cup').show();
-  $('#cup6').hide();
-  $('#cup5').hide();
-  $('#cup1').css('left','170px');
-  $('#cup1').css('top','530px');
-  $('#cup3').hide();
-  $('#cup7').hide();
-  $('#cup4').hide();
-  $('#cup0').hide()
-  $('#cup8').hide()
-  $('#cup2').hide();
-  $('#cup9').hide();
-  me.one_rerack=true;
-}
+
+
 
     const checkFire = () => {
       if (me.streak[me.streak.length-2]=="make" && me.streak[me.streak.length-4]=="make" && me.streak[me.streak.length-6]=="make" && me.heat==true){

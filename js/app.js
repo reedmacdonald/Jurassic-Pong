@@ -15,6 +15,7 @@ $(document).ready(() => {
       streak:[],
       heat:false,
       won:false,
+      seven_rerack: false,
       five_rerack: false,
       four_rerack: false,
       three_rerack: false,
@@ -28,6 +29,7 @@ $(document).ready(() => {
       streak: [],
       heat:false,
       won:false,
+      seven_rerack: false,
       five_rerack: false,
       four_rerack: false,
       three_rerack:false,
@@ -41,6 +43,7 @@ $(document).ready(() => {
       nightMode:false};
 
 //Buttons
+
 
     $('#their_houseRules').on('click', ()=>{
       $('.ruleSet').show();
@@ -89,6 +92,18 @@ $('.their_heat').on('click',()=>{
       me.reracks++;
     })
 
+    $('#flower').on('click',()=>{
+      makeFlower();
+      me.seven_rerack=true;
+      me.reracks++;
+    })
+
+    $('#they_flower').on('click',()=>{
+      makeTheirFlower();
+      them.seven_rerack=true;
+      them.reracks++;
+    })
+
     $('#they_zipper').on('click',()=>{
       theyMakeZipper();
       them.reracks++;
@@ -126,6 +141,7 @@ $('.their_heat').on('click',()=>{
   
     $("#start").mousedown(function(){
       $(".ball").animate({top: '700px', left: "700px"},4000);
+      
     });
   
     $("#nightMode").click(function(){
@@ -155,17 +171,20 @@ $('.their_heat').on('click',()=>{
   $("#start").mouseup(function(){
     $('.ball').stop();
     $(".ball").animate({left: "10px", top: "700px"},2500);
+    
   })
   
   
   $("#they_start").mouseup(function(){
   $('.their_ball').stop();
   $(".their_ball").animate({bottom: "700px",left:'10px'},2500);
+  
   })
   
   $("#they_start").mousedown(function(){
     
     $(".their_ball").animate({bottom: "700px",left: "700px"},4000);
+    
   });
   
   $('#they_start').keypress(function() {
@@ -183,7 +202,7 @@ $('.their_heat').on('click',()=>{
 
       if(d>h && d<(h+30) && b>f && b<(f+30)){
         //$(`#cup${i}`).css('left','10000px');
-        //if($(`#cup2${i}`).css("display")=="none"){them.cups_left++}//delete this if it messes everything
+        //if($(`#cup2${i}`).css("display")=="none"){them.cups_left++}//delete this if it messes
         $(`#cup2${i}`).hide(200);
         console.log('HIT!');
         if($(`#cup2${i}`).css("display")!="none"){them.cups_left--;}//remove the first part of this if it fucks things up
@@ -215,6 +234,8 @@ $('.their_heat').on('click',()=>{
       let g = $(`#cup${i}`).css('top')
       let h = parseInt(g,10);
       if(d>h && d<(h+30) && b>f && b<(f+30)){
+
+
         //$(`#cup${i}`).css('left','10000px');
         //if($(`#cup${i}`).css("display")=="none"){me.cups_left++}//Delete this if it messes up everything
         $(`#cup${i}`).hide(200);
@@ -249,10 +270,56 @@ $('.their_heat').on('click',()=>{
   })
 
 //Reracks
+
+      const makeFlower = () => {
+        $('.cup').show();
+        $(`.cup`).css("background-image","https://thumbs.dreamstime.com/t/background-beer-foam-bubbles-close-up-background-beer-foam-bubbles-111550412.jpg");
+        $('#cup0').hide();
+        $('#cup0').css()
+        $('#cup1').hide();
+        $('#cup2').css('top','530px');
+        $('#cup2').css('left','140px');
+        $('#cup3').css('top','530px');
+        $('#cup3').css('left','200px');
+        $('#cup4').hide();
+        $('#cup4').css('top','440px')
+        $('#cup5').css('left','110px')
+        $('#cup5').css('top','470px')
+        $('#cup6').css('top','470px');
+        $('#cup6').css('left','170px')
+        $('#cup7').css('top','470px');
+        $('#cup7').css('left','230px')
+        $('#cup8').css('top','410px')
+        $('#cup8').css('left','140px')
+        $('#cup9').css('top','410px');
+        $('#cup9').css('left','200px');
+      }
+
+      const makeTheirFlower = () => {
+        $('.their_cup').show();
+        $(`.their_cup`).css("background-image","https://thumbs.dreamstime.com/t/background-beer-foam-bubbles-close-up-background-beer-foam-bubbles-111550412.jpg");
+        $('#cup20').hide();
+        $('#cup21').css('bottom','400px');
+        $('#cup21').css('left','200px');
+        $('#cup22').css('left','140px');
+        $('#cup22').css('bottom','400px');
+        $('#cup23').css('bottom','460px');
+        $('#cup23').css('left','230px');
+        $('#cup24').css('left','170px')
+        $('#cup24').css('bottom','460px')
+        $('#cup25').css('left','110px')
+        $('#cup25').css('bottom','460px')
+        $('#cup26').hide();
+        $('#cup27').css('bottom','520px');
+        $('#cup27').css('left','140px')
+        $('#cup28').css('bottom','520px')
+        $('#cup28').css('left','200px')
+        $('#cup29').hide();
+      }
     
       const makeThreeTwo = () => {
         $('.cup').show();
- 
+        $(`.cup`).css("background-image","https://thumbs.dreamstime.com/t/background-beer-foam-bubbles-close-up-background-beer-foam-bubbles-111550412.jpg");
         $('#cup6').hide();
         $('#cup5').hide();
         $('#cup1').css('left','140px');
@@ -275,7 +342,7 @@ $('.their_heat').on('click',()=>{
 
       const makeZipper = () => {
         $('.cup').show();
- 
+        $(`.cup`).css("background-image","https://thumbs.dreamstime.com/t/background-beer-foam-bubbles-close-up-background-beer-foam-bubbles-111550412.jpg");
         $('#cup6').hide();
         $('#cup5').hide();
         $('#cup1').css('left','140px');
@@ -299,7 +366,7 @@ $('.their_heat').on('click',()=>{
 
       const makeTriangle = () => {
         $('.cup').show();
-
+        $(`.cup`).css("background-image","https://thumbs.dreamstime.com/t/background-beer-foam-bubbles-close-up-background-beer-foam-bubbles-111550412.jpg");
         $('#cup6').hide();
         $('#cup5').hide();
         $('#cup1').css('left','140px');
@@ -320,7 +387,7 @@ $('.their_heat').on('click',()=>{
     
       const makeStoplight = () => {
         $('.cup').show();
-
+        $(`.cup`).css("background-image","https://thumbs.dreamstime.com/t/background-beer-foam-bubbles-close-up-background-beer-foam-bubbles-111550412.jpg");
         $('#cup6').hide();
         $('#cup5').hide();
         $('#cup1').css('left','170px');
@@ -341,7 +408,7 @@ $('.their_heat').on('click',()=>{
 
       const makeTwoDown = () => {
         $('.cup').show();
-
+        $(`.cup`).css("background-image","https://thumbs.dreamstime.com/t/background-beer-foam-bubbles-close-up-background-beer-foam-bubbles-111550412.jpg");
         $('#cup6').hide();
         $('#cup5').hide();
         $('#cup1').css('left','170px');
@@ -364,6 +431,7 @@ $('.their_heat').on('click',()=>{
 
       const makeGentlemans = () => {
         $('.cup').show();
+        $(`.cup`).css("background-image","https://thumbs.dreamstime.com/t/background-beer-foam-bubbles-close-up-background-beer-foam-bubbles-111550412.jpg");
         $('#cup6').hide();
         $('#cup5').hide();
         $('#cup1').show();
@@ -383,7 +451,7 @@ $('.their_heat').on('click',()=>{
 
       const theyMakeThreeTwo = () => {
         $('.their_cup').show();
-
+        $(`.their_cup`).css("background-image","https://thumbs.dreamstime.com/t/background-beer-foam-bubbles-close-up-background-beer-foam-bubbles-111550412.jpg");
         $('#cup26').hide();
         $('#cup25').hide();
         $('#cup21').css('left','140px');
@@ -406,7 +474,7 @@ $('.their_heat').on('click',()=>{
 
       const theyMakeZipper = () => {
         $('.their_cup').show();
-
+        $(`.their_cup`).css("background-image","https://thumbs.dreamstime.com/t/background-beer-foam-bubbles-close-up-background-beer-foam-bubbles-111550412.jpg");
         $('#cup26').hide();
         $('#cup25').hide();
         $('#cup21').css('left','140px');
@@ -430,7 +498,7 @@ $('.their_heat').on('click',()=>{
 
       const theyMakeStoplight = () => {
         $('.their_cup').show();
-
+        $(`.their_cup`).css("background-image","https://thumbs.dreamstime.com/t/background-beer-foam-bubbles-close-up-background-beer-foam-bubbles-111550412.jpg");
         $('#cup26').hide();
         $('#cup25').hide();
         $('#cup21').css('left','170px');
@@ -451,7 +519,7 @@ $('.their_heat').on('click',()=>{
 
       const theyMakeTwoDown = () => {
         $('.their_cup').show();
-
+        $(`.their_cup`).css("background-image","https://thumbs.dreamstime.com/t/background-beer-foam-bubbles-close-up-background-beer-foam-bubbles-111550412.jpg");
         $('#cup26').hide();
         $('#cup25').hide();
         $('#cup21').css('left','170px');
@@ -472,6 +540,7 @@ $('.their_heat').on('click',()=>{
 
       const makeTheirGentlemans = () => {
         $('.their_cup').show();
+        $(`.their_cup`).css("background-image","https://thumbs.dreamstime.com/t/background-beer-foam-bubbles-close-up-background-beer-foam-bubbles-111550412.jpg");
         $('#cup26').hide();
         $('#cup25').hide();
         $('cup21').css('display','block');
@@ -492,6 +561,7 @@ $('.their_heat').on('click',()=>{
       
       const theyMakeTriangle = () => {
         $('.their_cup').show();
+        $(`.their_cup`).css("background-image","https://thumbs.dreamstime.com/t/background-beer-foam-bubbles-close-up-background-beer-foam-bubbles-111550412.jpg");
         $('#cup26').hide();
 
         $('#cup25').hide();
@@ -624,6 +694,12 @@ const checkIfIWon = () => {
         $('.fire').hide();
         $('.their_heat').hide();
         $('.their_fire').hide();
+        if (me.cups_left==7 && me.seven_rerack==false && me.heat==false  && them.won!=true){
+          $('#flower').show();
+          $('#rerack').hide();
+          $('#triangle').hide();
+          $('#stoplight').hide();
+        }
         if (me.cups_left==5 && me.five_rerack==false && me.heat==false  && them.won!=true){
           $('#rerack').show();
           $('#triangle').hide();
@@ -666,6 +742,12 @@ const checkIfIWon = () => {
         $('.fire').hide();
         $('.their_heat').hide();
         $('.their_fire').hide();
+        if (them.cups_left==7 && game.my_turn == false && them.seven_rerack==false && them.heat==false && me.won!=true){
+          $('#they_flower').show();
+          $('#they_rerack').hide();
+          $('#they_triangle').hide();
+          $('#they_stoplight').hide();
+        }
         if (them.cups_left==5 && game.my_turn == false && them.five_rerack==false && them.heat==false && me.won!=true){
           $('#they_rerack').show();
           $('#they_triangle').hide();

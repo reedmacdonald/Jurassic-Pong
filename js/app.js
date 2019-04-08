@@ -660,7 +660,7 @@ const checkIfIWon = () => {
 
 
     const checkFire = () => {
-      if (me.streak[me.streak.length-2]=="make" && me.streak[me.streak.length-4]=="make" && me.streak[me.streak.length-6]=="make" && me.heat==true){
+      if (me.streak[me.streak.length-2]=="make" && me.streak[me.streak.length-4]=="make" && me.streak[me.streak.length-6]=="make" && me.heat==true && me.won==false){
         $('.ball').css("background-image","url(https://image.freepik.com/free-photo/blazing-fire-flame-background-textured_3236-1123.jpg)")
         //$('.ball').css("background-image","url(https://media.istockphoto.com/photos/lava-background-picture-id621391550?k=6&m=621391550&s=612x612&w=0&h=bw4i-J29uP6Kl3WqO-O0XlqHRHY12cIOcbtjE_Zr8zE=)")
         game.my_turn=true;
@@ -669,7 +669,7 @@ const checkIfIWon = () => {
 
         $('.ball').css("background-color","white");
         $('.ball').css("background-image","none");
-        if (them.streak[them.streak.length-2]=="make" && them.streak[them.streak.length-4]=="make" && them.streak[them.streak.length-6]=="make" && them.heat==true){
+        if (them.streak[them.streak.length-2]=="make" && them.streak[them.streak.length-4]=="make" && them.streak[them.streak.length-6]=="make" && them.heat==true && them.won==false){
           $('.their_ball').css("background-image","url(https://image.freepik.com/free-photo/blazing-fire-flame-background-textured_3236-1123.jpg)")
           //$('.their_ball').css("background-image","url(https://media.istockphoto.com/photos/lava-background-picture-id621391550?k=6&m=621391550&s=612x612&w=0&h=bw4i-J29uP6Kl3WqO-O0XlqHRHY12cIOcbtjE_Zr8zE=)")
           game.my_turn=false;

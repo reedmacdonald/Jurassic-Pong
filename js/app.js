@@ -1,35 +1,46 @@
 $(document).ready(() => {
+
+
+  //Hide everything
+
   $('.ben.heat').hide();
   $('.ben.fire').hide();
   $('.game_over').hide();
   $('.ruleSet').hide();
 
-    const me = {cups_left:10,
-                streak:[],
-              heat:false,
-            won:false,
-          five_rerack: false,
-          four_rerack: false,
-        three_rerack: false,
-        two_rerack: false,
+  //Set up the players
+
+    const me = {
+      cups_left:10,
+      streak:[],
+      heat:false,
+      won:false,
+      five_rerack: false,
+      four_rerack: false,
+      three_rerack: false,
+      two_rerack: false,
       one_rerack: false,
-    reracks:0,
-  overtime: false}
-
-    const them = {cups_left:10,
-                  streak: [],
-                heat:false,
-              won:false,
-            five_rerack: false,
-            four_rerack: false,
-          three_rerack:false,
-          two_rerack: false,
-        one_rerack: false,
       reracks:0,
-    overtime: false};
+      overtime: false}
 
-    const game = {my_turn: true,
-    nightMode:false};
+    const them = {
+      cups_left:10,
+      streak: [],
+      heat:false,
+      won:false,
+      five_rerack: false,
+      four_rerack: false,
+      three_rerack:false,
+      two_rerack: false,
+      one_rerack: false,
+      reracks:0,
+      overtime: false};
+
+    const game = {
+      my_turn: true,
+      nightMode:false};
+
+//Buttons
 
     $('#their_houseRules').on('click', ()=>{
       $('.ruleSet').show();
@@ -42,6 +53,21 @@ $(document).ready(() => {
     $('.ruleSet').on('click', ()=>{
       $('.ruleSet').hide();
     })
+
+    $('.heat').on('click',()=>{
+      if (game.my_turn==true){
+        me.heat=true;
+        $('.heat').hide();
+      }
+  })
+
+$('.their_heat').on('click',()=>{
+    if (game.my_turn==false){
+      them.heat=true;
+      $('.their_heat').hide()
+
+    }
+})
 
 
 
@@ -56,6 +82,173 @@ $(document).ready(() => {
       them.reracks++;
       me.one_rerack=true;
     })
+
+    $('#zipper').on('click',()=>{
+      makeZipper();
+      me.four_rerack=true;
+      me.reracks++;
+    })
+
+    $('#they_zipper').on('click',()=>{
+      theyMakeZipper();
+      them.reracks++;
+    })
+
+    $('#twoDown').on('click',()=>{
+      makeTwoDown();
+      me.two_rerack=true;
+      me.reracks++;
+    })
+
+    $('#theyTwoDown').on('click',()=>{
+      theyMakeTwoDown();
+      them.two_rerack=true;
+      them.reracks++;
+    })
+
+    $("#rerack").on('click',()=>{
+      makeThreeTwo();
+      me.five_rerack=true;
+      me.reracks++;
+    })
+  
+    $("#stoplight").on('click',()=>{
+      makeStoplight();
+      me.three_rerack=true;
+      me.reracks++;
+    })
+  
+    $("#triangle").on('click',()=>{
+      makeTriangle();
+      me.three_rerack=true;
+      me.reracks++;
+    })
+  
+    $("#start").mousedown(function(){
+      $(".ball").animate({top: '700px', left: "700px"},4000);
+    });
+  
+    $("#nightMode").click(function(){
+      $('body').css('backgroundColor','black')
+    })
+
+
+    $("#they_rerack").on('click',()=>{
+      theyMakeThreeTwo();
+      them.five_rerack=true;
+      them.reracks++;
+    })
+  
+    $("#they_stoplight").on('click',()=>{
+      theyMakeStoplight();
+      them.three_rerack=true;
+      them.reracks++;
+    })
+  
+    $("#they_triangle").on('click',()=>{
+      theyMakeTriangle();
+      them.three_rerack=true;
+      them.reracks++;
+    })
+  
+  
+  $("#start").mouseup(function(){
+    $('.ball').stop();
+    $(".ball").animate({left: "10px", top: "700px"},2500);
+  })
+  
+  
+  $("#they_start").mouseup(function(){
+  $('.their_ball').stop();
+  $(".their_ball").animate({bottom: "700px",left:'10px'},2500);
+  })
+  
+  $("#they_start").mousedown(function(){
+    
+    $(".their_ball").animate({bottom: "700px",left: "700px"},4000);
+  });
+  
+  $('#they_start').keypress(function() {
+    $('.their_ball').stop();
+    let e, f, g, h;
+    let a = $('.their_ball').css('left');
+    let b = parseInt(a,10);
+    let c = $('.their_ball').css('top');
+    let d = parseInt(c,10);
+    for (i=0;i<10;i++){
+      let e = $(`#cup2${i}`).css('left')
+      let f = parseInt(e,10);
+      let g = $(`#cup2${i}`).css('top')
+      let h = parseInt(g,10);
+
+      if(d>h && d<(h+30) && b>f && b<(f+30)){
+        //$(`#cup${i}`).css('left','10000px');
+        //if($(`#cup2${i}`).css("display")=="none"){them.cups_left++}//delete this if it messes everything
+        $(`#cup2${i}`).hide(200);
+        console.log('HIT!');
+        if($(`#cup2${i}`).css("display")!="none"){them.cups_left--;}//remove the first part of this if it fucks things up
+        if (them.cups_left==0){them.won=true};
+        if($(`#cup2${i}`).css("display")!="none"){them.streak.push('make')};
+
+      }
+    }
+    them.streak.push('miss');
+    if (them.streak[them.streak.length-2]=='miss'){them.heat=false}
+    $('.their_ball').css('left','200px');
+    $('.their_ball').css('bottom','10px');
+    game.my_turn=true;
+    checkFire();
+    checkIfIWon();
+    checkButtons();
+  })
+
+  $('#start').keypress(function() {
+    $('.ball').stop();
+    let e, f, g, h;    
+    let a = $('.ball').css('left');
+    let b = parseInt(a,10);
+    let c = $('.ball').css('top');
+    let d = parseInt(c,10);
+    for (i=0;i<10;i++){
+      let e = $(`#cup${i}`).css('left')
+      let f = parseInt(e,10);
+      let g = $(`#cup${i}`).css('top')
+      let h = parseInt(g,10);
+      if(d>h && d<(h+30) && b>f && b<(f+30)){
+        //$(`#cup${i}`).css('left','10000px');
+        //if($(`#cup${i}`).css("display")=="none"){me.cups_left++}//Delete this if it messes up everything
+        $(`#cup${i}`).hide(200);
+        console.log('HIT!')
+        if($(`#cup${i}`).css("display")!="none"){me.cups_left--;}
+        if (me.cups_left==0){me.won=true}
+        if($(`#cup${i}`).css("display")!="none"){me.streak.push("make")};//same thing here I may have ruined this
+      }
+    }
+    $('.ball').css('left','200px');
+    $('.ball').css('top','10px');
+    me.streak.push("miss");
+    if (me.streak[me.streak.length-2]=='miss'){me.heat=false}
+    game.my_turn=false;
+    checkFire();
+    checkIfTheyWon();
+    checkButtons();    
+  })
+
+  $('#nightMode').on('click',()=>{
+    if(game.nightMode==false){$('body').css("background-image",'url(https://lovepirate77.files.wordpress.com/2015/07/img_4757.png)');
+  game.nightMode=true;}
+    else {$('body').css("background-image","url(https://i.pinimg.com/originals/59/03/60/590360c0e4f42455bbd4d35d50a9e6b4.jpg)");
+  game.nightMode=false;}
+  })
+  
+  $('#game_over_yes').on('click',()=>{
+    location.reload();
+  })
+  $('#game_over_no').on('click',()=>{
+    $('.game_over').hide();
+  })
+
+//Reracks
     
       const makeThreeTwo = () => {
         $('.cup').show();
@@ -102,11 +295,7 @@ $(document).ready(() => {
         
       }
 
-      $('#zipper').on('click',()=>{
-        makeZipper();
-        me.four_rerack=true;
-        me.reracks++;
-      })
+
 
       const makeTriangle = () => {
         $('.cup').show();
@@ -169,11 +358,7 @@ $(document).ready(() => {
         $('#cup9').hide();
       }
 
-      $('#twoDown').on('click',()=>{
-        makeTwoDown();
-        me.two_rerack=true;
-        me.reracks++;
-      })
+
 
 
 
@@ -241,10 +426,7 @@ $(document).ready(() => {
         
       }
 
-      $('#they_zipper').on('click',()=>{
-        theyMakeZipper();
-        them.reracks++;
-      })
+
 
       const theyMakeStoplight = () => {
         $('.their_cup').show();
@@ -306,11 +488,7 @@ $(document).ready(() => {
         them.one_rerack=true;
       }
 
-      $('#theyTwoDown').on('click',()=>{
-        theyMakeTwoDown();
-        them.two_rerack=true;
-        them.reracks++;
-      })
+
       
       const theyMakeTriangle = () => {
         $('.their_cup').show();
@@ -333,134 +511,26 @@ $(document).ready(() => {
 
         $('#cup29').hide();
       }
-    
-      $("#rerack").on('click',()=>{
-        makeThreeTwo();
-        me.five_rerack=true;
-        me.reracks++;
-      })
-    
-      $("#stoplight").on('click',()=>{
-        makeStoplight();
-        me.three_rerack=true;
-        me.reracks++;
-      })
-    
-      $("#triangle").on('click',()=>{
-        makeTriangle();
-        me.three_rerack=true;
-        me.reracks++;
-      })
-    
-      $("#start").mousedown(function(){
-        $(".ball").animate({top: '700px', left: "700px"},4000);
-      });
-    
-      $("#nightMode").click(function(){
-        $('body').css('backgroundColor','black')
-      })
 
-
-      $("#they_rerack").on('click',()=>{
-        theyMakeThreeTwo();
-        them.five_rerack=true;
-        them.reracks++;
-      })
-    
-      $("#they_stoplight").on('click',()=>{
-        theyMakeStoplight();
-        them.three_rerack=true;
-        them.reracks++;
-      })
-    
-      $("#they_triangle").on('click',()=>{
-        theyMakeTriangle();
-        them.three_rerack=true;
-        them.reracks++;
-      })
-    
-    
-    $("#start").mouseup(function(){
-      $('.ball').stop();
-      $(".ball").animate({left: "10px", top: "700px"},2500);
-    })
-    
-    
-    $("#they_start").mouseup(function(){
-    $('.their_ball').stop();
-    $(".their_ball").animate({bottom: "700px",left:'10px'},2500);
-    })
-    
-    $("#they_start").mousedown(function(){
-      
-      $(".their_ball").animate({bottom: "700px",left: "700px"},4000);
-    });
-    
-    $('#they_start').keypress(function() {
-      $('.their_ball').stop();
-      let e, f, g, h;
-      let a = $('.their_ball').css('left');
-      let b = parseInt(a,10);
-      let c = $('.their_ball').css('top');
-      let d = parseInt(c,10);
-      for (i=0;i<10;i++){
-        let e = $(`#cup2${i}`).css('left')
-        let f = parseInt(e,10);
-        let g = $(`#cup2${i}`).css('top')
-        let h = parseInt(g,10);
-
-        if(d>h && d<(h+30) && b>f && b<(f+30)){
-          //$(`#cup${i}`).css('left','10000px');
-          //if($(`#cup2${i}`).css("display")=="none"){them.cups_left++}//delete this if it messes everything
-          $(`#cup2${i}`).hide(200);
-          console.log('HIT!');
-          if($(`#cup2${i}`).css("display")!="none"){them.cups_left--;}//remove the first part of this if it fucks things up
-          if (them.cups_left==0){them.won=true};
-          if($(`#cup2${i}`).css("display")!="none"){them.streak.push('make')};
-
-        }
+      const resetBalls = () => {
+        $('.ball').css('left','200px');
+        $('.ball').css('top','10px');
+        $('.their_ball').css('left','200px');
+        $('.their_ball').css('bottom','10px');
       }
-      them.streak.push('miss');
-      if (them.streak[them.streak.length-2]=='miss'){them.heat=false}
-      $('.their_ball').css('left','200px');
-      $('.their_ball').css('bottom','10px');
-      game.my_turn=true;
-      checkFire();
-      checkIfIWon();
-      checkButtons();
-    })
+  
+      $('#their_resetBalls').on('click', ()=>{
+        resetBalls();
+      })
+  
+      $('#resetBalls').on('click', ()=>{
+        resetBalls();
+      })
+    
 
-    $('#start').keypress(function() {
-      $('.ball').stop();
-      let e, f, g, h;    
-      let a = $('.ball').css('left');
-      let b = parseInt(a,10);
-      let c = $('.ball').css('top');
-      let d = parseInt(c,10);
-      for (i=0;i<10;i++){
-        let e = $(`#cup${i}`).css('left')
-        let f = parseInt(e,10);
-        let g = $(`#cup${i}`).css('top')
-        let h = parseInt(g,10);
-        if(d>h && d<(h+30) && b>f && b<(f+30)){
-          //$(`#cup${i}`).css('left','10000px');
-          //if($(`#cup${i}`).css("display")=="none"){me.cups_left++}//Delete this if it messes up everything
-          $(`#cup${i}`).hide(200);
-          console.log('HIT!')
-          if($(`#cup${i}`).css("display")!="none"){me.cups_left--;}
-          if (me.cups_left==0){me.won=true}
-          if($(`#cup${i}`).css("display")!="none"){me.streak.push("make")};//same thing here I may have ruined this
-        }
-      }
-      $('.ball').css('left','200px');
-      $('.ball').css('top','10px');
-      me.streak.push("miss");
-      if (me.streak[me.streak.length-2]=='miss'){me.heat=false}
-      game.my_turn=false;
-      checkFire();
-      checkIfTheyWon();
-      checkButtons();    
-    })
+
+      //Checks
+
 
 const checkIfTheyWon = () => {
   if(them.won==true && me.streak[me.streak.length-2]=="miss" && me.won==false){
@@ -489,19 +559,7 @@ const checkIfTheyWon = () => {
   
 
 }
-$('#nightMode').on('click',()=>{
-  if(game.nightMode==false){$('body').css("background-image",'url(https://lovepirate77.files.wordpress.com/2015/07/img_4757.png)');
-game.nightMode=true;}
-  else {$('body').css("background-image","url(https://i.pinimg.com/originals/59/03/60/590360c0e4f42455bbd4d35d50a9e6b4.jpg)");
-game.nightMode=false;}
-})
 
-$('#game_over_yes').on('click',()=>{
-  location.reload();
-})
-$('#game_over_no').on('click',()=>{
-  $('.game_over').hide();
-})
 
 const checkIfIWon = () => {
   if(me.won==true && them.streak[them.streak.length-2]=="miss" && them.won==false){
@@ -644,37 +702,15 @@ const checkIfIWon = () => {
       }
     }
     
-    checkButtons();
 
-    const resetBalls = () => {
-      $('.ball').css('left','200px');
-      $('.ball').css('top','10px');
-      $('.their_ball').css('left','200px');
-      $('.their_ball').css('bottom','10px');
-    }
 
-    $('#their_resetBalls').on('click', ()=>{
-      resetBalls();
-    })
 
-    $('#resetBalls').on('click', ()=>{
-      resetBalls();
-    })
         
-$('.heat').on('click',()=>{
-        if (game.my_turn==true){
-          me.heat=true;
-          $('.heat').hide();
-        }
-    })
 
-$('.their_heat').on('click',()=>{
-      if (game.my_turn==false){
-        them.heat=true;
-        $('.their_heat').hide()
 
-      }
-  })
+//And here......we.......go
+
+  checkButtons();
     
     ;})
     

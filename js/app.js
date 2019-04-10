@@ -602,7 +602,7 @@ $('.their_heat').on('click',()=>{
 
 const checkIfTheyWon = () => {
   if(them.won==true && me.streak[me.streak.length-2]=="miss" && me.won==false){
-    console.log('they won!');
+    console.log('they won, you never cleared the rack!');
     $('.game_over').show();
   }
   if(them.won==true && me.won==false && me.streak[me.streak.length-2]=="make" ){
@@ -617,12 +617,16 @@ const checkIfTheyWon = () => {
     //me.cups_left=1;
     //them.cups_left=1;
   }
-  if(them.won==true && me.won==true && me.streak[me.streak.length-2]=="miss" && them.streak[them.streak.length-2]=="make" && me.streak[me.streak.length-4]=="miss"/*Herein lies the problem. Under this logic, you make it, they rebuttal, they get it again, they miss, you win*/){
-    console.log('they won');
+  if(them.won==true && me.won==true && me.streak[me.streak.length-2]=="miss" && them.streak[them.streak.length-2]=="make" && me.streak[me.streak.length-1]=="miss" && me.streak[me.streak.length-3]=="miss"/*Herein lies the problem. Under this logic, you make it, they rebuttal, they get it again, they miss, you win*/){
+    console.log('they won'+me.streak);
     $('.game_over').show();
   }
   if (them.won==false && me.won==false){
     console.log('Your turn bucko!');
+  }
+  else if (them.won==true && me.won==true){
+    makeTheirGentlemans();
+    makeGentlemans();
   }
   
 
@@ -646,12 +650,16 @@ const checkIfIWon = () => {
     //me.cups_left=1;//I should change one of these
     //them.cups_left=1;// I should change one of these
   }
-  if(them.won==true && me.won==true && me.streak[me.streak.length-2]=="make" && them.streak[them.streak.length-2]=="miss" && them.streak[them.streak.length-4]=="miss"/*Think about adding overtime*/){
+  if(them.won==true && me.won==true && me.streak[me.streak.length-2]=="make" && them.streak[them.streak.length-2]=="miss" && them.streak[them.streak.length-1]=="miss" && them.streak[them.streak.length-3]=="miss"/*Think about adding overtime*/){
     console.log('I won');
     $('.game_over').show();
   }
   if (them.won==false && me.won==false){
     console.log('Your turn bucko!');
+  }
+  else if (them.won==true && me.won==true){
+    makeTheirGentlemans();
+    makeGentlemans();
   }
 }
 
@@ -782,8 +790,6 @@ const checkIfIWon = () => {
       }
     }
     
-
-
 
         
 

@@ -47,7 +47,7 @@ h1 {
 .ruleSetHeading {
     position: absolute;
     color: rgb(13, 66, 13);
-    left:210px;
+    left:240px;
     font-size: 70px;
     font-family: fantasy;
 }
@@ -64,12 +64,21 @@ h1 {
     top: 250px;
     position: absolute;
     font-family: fantasy;
+    transition: all 2s;
+}
+.game_over_buttons:focus{
+    outline:none;
+}
+
+
+.game_over_buttons:hover{
+    background-color: rgb(242, 238, 28)
 }
 
 #their_houseRules {
     position: absolute;
     left:440px;
-    top: 540px;
+    top: 570px;
 }
 
 #their_resetBalls{
@@ -81,7 +90,7 @@ h1 {
 #houseRules {
     position: absolute;
     left: 440px;
-    top: 540px;
+    top: 570px;
 }
 
 #resetBalls {
@@ -165,8 +174,26 @@ li {
     margin-top: 20px;
     margin-right: 400px;
     opacity: .9;
+    transition: all 1s;
+    font-family: 'Nanum Brush Script', cursive;
+
 
 }
+.ben:hover{
+    background-color: aqua;
+}
+
+.ben:focus{
+    outline:none;
+}
+
+.their_ben:focus{
+    outline:none;
+}
+.their_ben:hover{
+    background-color: aqua;
+}
+
 
 
 .heat {
@@ -175,23 +202,40 @@ li {
     border: 2px solid darkred;
     background-color: lightgreen;
     text-decoration: darkred;
-    font-family: fantasy;
+    
     font: 30px bold;
     margin-top: 20px;
     margin-right: 400px;
     opacity: .9;
+    font-family: 'Nanum Brush Script', cursive;
+    transition: all 1s;
 }
+.heat:hover {
+    background-color: #F34A28;
+}
+.their_heat:hover {
+    background-color: #F34A28;
+}
+.their_heat:focus{
+    outline:none;
+}
+.heat:focus{
+    outline:none;
+}
+
 .their_heat {
     height: 40px fit-content;
     width: 160px;
     border: 2px solid darkred;
     background-color: lightgreen;
     text-decoration: darkred;
-    font-family: fantasy;
+    
     font: 30px bold;
     margin-top: 20px;
     margin-right: 400px;
     opacity:.9;
+    font-family: 'Nanum Brush Script', cursive;
+    transition: all 1s;
 }
 
 .fire {
@@ -228,6 +272,8 @@ li {
     margin-top: 20px;
     margin-right: 400px;
     opacity: .9;
+    transition: all 1s;
+    font-family: 'Nanum Brush Script', cursive;
 }
 
 
